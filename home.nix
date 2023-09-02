@@ -72,6 +72,7 @@
   #
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
   home.sessionVariables = {
+    DOCKER_HOST="ssh://vst@irix";
     EDITOR = "nvim";
   };
 
@@ -88,7 +89,6 @@
     historySubstringSearch.enable = true;
     localVariables = {
       PATH="$HOME/.nix-profile/bin:/usr/local/bin:$PATH";
-      DOCKER_HOST="ssh://vst@irix";
     };
     shellAliases = {
       gs = "git status";
