@@ -88,6 +88,7 @@
     historySubstringSearch.enable = true;
     localVariables = {
       PATH="$HOME/.nix-profile/bin:/usr/local/bin:$PATH";
+      DOCKER_HOST="ssh://vst@irix";
     };
     shellAliases = {
       gs = "git status";
