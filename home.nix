@@ -31,6 +31,7 @@
     kubernetes-helm
     kubeswitch
     neovim
+    nix # nix-build not found without this pakage
     nmap
     nodejs_18  # neovim / ls dependency
     ripgrep    # neovim / telescope dependency
