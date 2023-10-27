@@ -88,9 +88,10 @@
     history.extended = true;
     historySubstringSearch.enable = true;
     localVariables = {
-      PATH="$HOME/.nix-profile/bin:/usr/local/bin:$PATH";
+      PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH";
     };
     shellAliases = {
+      e = "exit";
       gs = "git status";
       gp = "git push";
       ll = "ls -lh";
