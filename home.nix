@@ -85,6 +85,7 @@
     enable = true;
     autocd = true;
     enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
     history.extended = true;
     historySubstringSearch.enable = true;
     localVariables = {
