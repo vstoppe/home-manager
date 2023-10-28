@@ -98,6 +98,7 @@
       e = "exit";
       gs = "git status";
       gp = "git push";
+      h3 = "helm";
       ll = "ls -lh";
       update = "home-manager switch";
       ws  = "cd ~/workspace/";
@@ -106,6 +107,7 @@
       k = "kubectl";
       nvim = "nvim -u ~/.config/nvim/init.lua";
       nixvim = "nvim";
+      wp = "watch kubectl get po";
     };
     oh-my-zsh = {
       enable = true;
