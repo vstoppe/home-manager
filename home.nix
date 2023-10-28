@@ -84,6 +84,9 @@
   programs.zsh = {
     enable = true;
     autocd = true;
+    initExtra = ''
+    compdef kubecolor=kubectl
+    '';
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
     history.extended = true;
