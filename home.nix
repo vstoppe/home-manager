@@ -102,6 +102,7 @@
       ll = "ls -lh";
       update = "home-manager switch";
       ws  = "cd ~/workspace/";
+      ns  = "switch ns";
       wsa = "cd ~/workspace/ansible";
       kubectl = "kubecolor --light-background";
       k = "kubectl";
