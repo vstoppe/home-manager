@@ -41,6 +41,7 @@
     unixtools.watch
     vagrant
     virt-manager
+    wakeonlan
     wget
     xsel      # neovim dep
     zsh
