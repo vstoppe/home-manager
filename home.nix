@@ -22,6 +22,7 @@
   # environment.
   home.packages = with pkgs; [
     ansible
+    argocd
     bat # colorful cat alternative
   	docker
   	docker-compose
@@ -108,6 +109,7 @@
       ws  = "cd ~/workspace/";
       ns  = "switch ns";
       wsa = "cd ~/workspace/ansible";
+      ws3 = "cd ~/workspace/k3s";
       kubectl = "kubecolor --light-background";
       k = "kubectl";
       nvim = "nvim -u ~/.config/nvim/init.lua";
