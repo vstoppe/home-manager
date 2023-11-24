@@ -48,6 +48,7 @@
     wakeonlan
     wget
     xsel      # neovim dep
+    yq
     zsh
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -101,20 +102,21 @@
     };
     shellAliases = {
       e = "exit";
-      gs = "git status";
       gp = "git push";
+      gs = "git status";
       h3 = "helm";
-      ll = "ls -lh";
-      update = "home-manager switch";
-      ws  = "cd ~/workspace/";
-      ns  = "switch ns";
-      wsa = "cd ~/workspace/ansible";
-      ws3 = "cd ~/workspace/k3s";
-      kubectl = "kubecolor --light-background";
       k = "kubectl";
-      nvim = "nvim -u ~/.config/nvim/init.lua";
+      kubectl = "kubecolor --light-background";
+      ll = "ls -lh";
       nixvim = "nvim";
+      ns  = "switch ns";
+      nvim = "nvim -u ~/.config/nvim/init.lua";
+      update = "home-manager switch";
       wp = "watch kubectl get po";
+      ws  = "cd ~/workspace/";
+      ws3 = "cd ~/workspace/k3s";
+      wsa = "cd ~/workspace/ansible";
+      wsh = "cd ~/workspace/homelab";
     };
     oh-my-zsh = {
       enable = true;
