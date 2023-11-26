@@ -28,6 +28,7 @@
   	docker-compose
     cargo
     curl
+    dyff
     k9s
     krew
     kubecolor
