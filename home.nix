@@ -38,6 +38,7 @@
     nix # nix-build not found without this pakage
     nmap
     nodejs_18  # neovim / ls dependency
+    postgresql_15
     ripgrep    # neovim / telescope dependency
     rsync
     rustc
@@ -107,6 +108,7 @@
       h3 = "helm";
       k = "kubectl";
       kubectl = "kubecolor --light-background";
+      l  = "ls -lh";
       ll = "ls -lh";
       nixvim = "nvim";
       ns  = "switch ns";
