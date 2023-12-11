@@ -27,8 +27,10 @@
   	docker
   	docker-compose
     cargo
+    cilium-cli
     curl
     dyff
+    git-sync
     k9s
     krew
     kubecolor
