@@ -31,6 +31,7 @@
     curl
     dyff
     git-sync
+    jq
     k9s
     krew
     kubecolor
@@ -82,7 +83,7 @@
   #
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
   home.sessionVariables = {
-    DOCKER_HOST="ssh://vst@irix";
+    DOCKER_HOST="ssh://root@onyx";
     EDITOR = "nvim";
   };
 
