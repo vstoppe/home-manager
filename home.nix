@@ -42,13 +42,14 @@
     nix # nix-build not found without this pakage
     nmap
     nodejs_18  # neovim / ls dependency
+    operator-sdk # manage operator lifecycle manager
     postgresql_15
     ripgrep    # neovim / telescope dependency
     rsync
     rustc
     shellcheck # neovim / lsp depencency
     unixtools.watch
-    vagrant
+    #vagrant
     virt-manager
     wakeonlan
     wget
@@ -107,6 +108,7 @@
     };
     shellAliases = {
       e = "exit";
+      gb = "git branch";
       gp = "git push";
       gs = "git status";
       h3 = "helm";
