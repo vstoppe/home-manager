@@ -32,13 +32,15 @@
     dyff
     git-sync
     jq
+    hubble
     k9s
     krew
     kubecolor
     kubectl
     kubernetes-helm
     kubeswitch
-    neovim
+    #neovim
+    netdiscover
     nix # nix-build not found without this pakage
     nmap
     nodejs_18  # neovim / ls dependency
@@ -86,6 +88,13 @@
   home.sessionVariables = {
     DOCKER_HOST="ssh://root@onyx";
     EDITOR = "nvim";
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    #extraConfig = ''
+    #'';
   };
 
   programs.powerline-go = {
