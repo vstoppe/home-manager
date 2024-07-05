@@ -106,19 +106,22 @@
       lualine-nvim
       nvim-web-devicons # needed for lualine-nvim
       vim-fugitive
+      gruvbox-nvim
       nerdtree
       coc-nvim
     ];
+
 
     extraConfig = ''
       lua << END
         require('lualine').setup{
           options = { theme = 'gruvbox' }
+
         }
       END
 
 
-
+      colorscheme gruvbox
 
 
       " Enable line numbers
@@ -174,7 +177,6 @@
       ll = "ls -lh";
       nixvim = "nvim";
       ns  = "switch ns";
-      nvim = "nvim -u ~/.vim/init.lua";
       # nvim = "nvim -u ~/.config/nvim/init.lua";
       update = "home-manager switch";
       wp = "watch kubectl get po";
