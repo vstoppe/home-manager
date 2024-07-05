@@ -117,6 +117,7 @@
       autoclose-nvim
       indent-blankline-nvim
       nvim-surround
+      nvim-comment
     ];
 
 
@@ -133,6 +134,9 @@
 
         -- helps in changeing surroundings (eg. "\', \" ")
         require('nvim-surround').setup()
+
+        -- helps un/commenting lines:
+        require('nvim_comment').setup()
       END
 
 
