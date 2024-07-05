@@ -37,6 +37,7 @@
     krew
     kubecolor
     kubectl
+    kubectx
     kubernetes-helm
     kubeswitch
     #neovim
@@ -46,6 +47,9 @@
     nodejs_18  # neovim / ls dependency
     operator-sdk # manage operator lifecycle manager
     postgresql_15
+    python311Full
+    python311Packages.kubernetes
+    python311Packages.pip
     ripgrep    # neovim / telescope dependency
     rsync
     rustc
