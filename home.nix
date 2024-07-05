@@ -40,7 +40,7 @@
     kubectx
     kubernetes-helm
     kubeswitch
-    #neovim
+    # neovim
     netdiscover
     nix # nix-build not found without this pakage
     nmap
@@ -56,6 +56,7 @@
     shellcheck # neovim / lsp depencency
     unixtools.watch
     #vagrant
+    vimPlugins.nvim-tree-lua
     virt-manager
     wakeonlan
     wget
@@ -99,6 +100,48 @@
     defaultEditor = true;
     #extraConfig = ''
     #'';
+
+    plugins = with pkgs.vimPlugins; [
+      vim-nix
+      lualine-nvim
+      nvim-web-devicons # needed for lualine-nvim
+      vim-fugitive
+      nerdtree
+      coc-nvim
+    ];
+
+    extraConfig = ''
+      lua << END
+        require('lualine').setup{
+          options = { theme = 'gruvbox' }
+        }
+      END
+
+
+
+
+
+      " Enable line numbers
+      set number
+
+      " Enable syntax highlighting
+      syntax enable
+
+
+      " NERDTree configuration
+      map <C-n> :NERDTreeToggle<CR>
+
+      " CoC.nvim configuration
+      let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-python']
+
+      " Additional settings
+      set tabstop=4
+      set shiftwidth=4
+      set expandtab
+      '';
+
+
+
   };
 
   programs.powerline-go = {
@@ -131,7 +174,8 @@
       ll = "ls -lh";
       nixvim = "nvim";
       ns  = "switch ns";
-      nvim = "nvim -u ~/.config/nvim/init.lua";
+      nvim = "nvim -u ~/.vim/init.lua";
+      # nvim = "nvim -u ~/.config/nvim/init.lua";
       update = "home-manager switch";
       wp = "watch kubectl get po";
       ws  = "cd ~/workspace/";
