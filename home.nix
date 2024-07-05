@@ -108,16 +108,17 @@
     #'';
 
     plugins = with pkgs.vimPlugins; [
-      vim-nix
+      autoclose-nvim
+      coc-nvim
+      gruvbox-nvim
+      indent-blankline-nvim
       lualine-nvim
+      nvim-comment
+      nvim-surround
       nvim-web-devicons # needed for lualine-nvim
       vim-fugitive
-      gruvbox-nvim
-      coc-nvim
-      autoclose-nvim
-      indent-blankline-nvim
-      nvim-surround
-      nvim-comment
+      vim-nix
+      vim-sort-motion
     ];
 
 
