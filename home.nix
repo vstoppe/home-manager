@@ -50,6 +50,7 @@
     python311Full
     python311Packages.kubernetes
     python311Packages.pip
+    python311Packages.pylint
     ripgrep    # neovim / telescope dependency
     rsync
     rustc
@@ -97,6 +98,7 @@
 
   imports = [
     ./neovim/nvim-tree.nix
+    ./neovim/options.nix
   ];
 
   programs.neovim = {
