@@ -116,6 +116,7 @@
       coc-nvim
       autoclose-nvim
       indent-blankline-nvim
+      nvim-surround
     ];
 
 
@@ -127,8 +128,11 @@
 
         require('autoclose').setup()
 
-        -- setup indent-blankline
+        -- setup indent-blankline: add lines to help identify indentions
         require('ibl').setup()
+
+        -- helps in changeing surroundings (eg. "\', \" ")
+        require('nvim-surround').setup()
       END
 
 
