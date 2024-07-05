@@ -114,6 +114,8 @@
       vim-fugitive
       gruvbox-nvim
       coc-nvim
+      autoclose-nvim
+      indent-blankline-nvim
     ];
 
 
@@ -122,9 +124,12 @@
         require('lualine').setup{
           options = { theme = 'gruvbox' }
         }
+
+        require('autoclose').setup()
+
+        -- setup indent-blankline
+        require('ibl').setup()
       END
-
-
 
 
       colorscheme gruvbox
