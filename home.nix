@@ -97,10 +97,11 @@ home.sessionVariables = {
 };
 
 imports = [
-  ./neovim/options.nix
   ./neovim/completion.nix
+  ./neovim/keymaps.nix
   ./neovim/lualine.nix
   ./neovim/nvim-tree.nix
+  ./neovim/options.nix
 ];
 
 programs.neovim = {
