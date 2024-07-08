@@ -21,18 +21,22 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+  	docker
+  	docker-compose
+    # neovim
+    # vagrant
+    # vimPlugins.nvim-tree-lua
+    # virt-manager # <== failed to build in 24.05
     ansible
     argocd
     bat # colorful cat alternative
-  	docker
-  	docker-compose
     cargo
     cilium-cli
     curl
     dyff
     git-sync
-    jq
     hubble
+    jq
     k9s
     krew
     kubecolor
@@ -40,7 +44,6 @@
     kubectx
     kubernetes-helm
     kubeswitch
-    # neovim
     netdiscover
     nix # nix-build not found without this pakage
     nmap
@@ -56,77 +59,71 @@
     rustc
     shellcheck # neovim / lsp depencency
     unixtools.watch
-    #vagrant
-    # vimPlugins.nvim-tree-lua
-    virt-manager
     wakeonlan
     wget
     xsel      # neovim dep
     yq
     zsh
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+  # # It is sometimes useful to fine-tune packages, for example, by applying
+  # # overrides. You can do that directly here, just don't forget the
+  # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+  # # fonts?
+  # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+];
+
+# Home Manager is pretty good at managing dotfiles. The primary way to manage
+# plain files is through 'home.file'.
+home.file = {
+  # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+  # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+  # # symlink to the Nix store copy.
+  # ".screenrc".source = dotfiles/screenrc;
+
+  # # You can also set the file content immediately.
+  # ".gradle/gradle.properties".text = ''
+  #   org.gradle.console=verbose
+  #   org.gradle.daemon.idletimeout=3600000
+  # '';
+};
+
+# You can also manage environment variables but you will have to manually
+# source
+#
+#  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+home.sessionVariables = {
+  DOCKER_HOST="ssh://root@onyx";
+  EDITOR = "nvim";
+};
+
+imports = [
+  ./neovim/options.nix
+  ./neovim/completion.nix
+  ./neovim/lualine.nix
+  ./neovim/nvim-tree.nix
+];
+
+programs.neovim = {
+  enable = true;
+  defaultEditor = true;
+  #extraConfig = ''
+  #'';
+
+  plugins = with pkgs.vimPlugins; [
+    autoclose-nvim
+    gruvbox-nvim
+    indent-blankline-nvim
+    nvim-comment
+    nvim-surround
+    nvim-web-devicons # needed for lualine-nvim
+    vim-fugitive
+    vim-nix
+    vim-sort-motion
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  home.sessionVariables = {
-    DOCKER_HOST="ssh://root@onyx";
-    EDITOR = "nvim";
-  };
-
-  imports = [
-    ./neovim/nvim-tree.nix
-    ./neovim/options.nix
-  ];
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    #extraConfig = ''
-    #'';
-
-    plugins = with pkgs.vimPlugins; [
-      autoclose-nvim
-      coc-nvim
-      gruvbox-nvim
-      indent-blankline-nvim
-      lualine-nvim
-      nvim-comment
-      nvim-surround
-      nvim-web-devicons # needed for lualine-nvim
-      vim-fugitive
-      vim-nix
-      vim-sort-motion
-    ];
-
-
-    extraConfig = ''
-      lua << END
-        require('lualine').setup{
-          options = { theme = 'gruvbox' }
-        }
+  extraConfig = ''
+    lua << END
 
         require('autoclose').setup()
 
@@ -138,31 +135,14 @@
 
         -- helps un/commenting lines:
         require('nvim_comment').setup()
-      END
-
+END
 
       colorscheme gruvbox
 
-
-      " Enable line numbers
-      set number
-
       " Enable syntax highlighting
       syntax enable
-
-
-      " CoC.nvim configuration
-      let g:coc_global_extensions = ['coc-json', 'coc-tsserver', 'coc-python']
-
-      " Additional settings
-      set tabstop=4
-      set shiftwidth=4
-      set expandtab
-      '';
-
-
-
-  };
+  '';
+};
 
   programs.powerline-go = {
     enable = true;
@@ -175,7 +155,8 @@
     initExtra = ''
     compdef kubecolor=kubectl
     '';
-    enableAutosuggestions = true;
+    # enableAutosuggestions = true; <== outdated with 24.05
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     history.extended = true;
     historySubstringSearch.enable = true;
