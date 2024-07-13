@@ -50,10 +50,12 @@
     nodejs_18  # neovim / ls dependency
     operator-sdk # manage operator lifecycle manager
     postgresql_15
-    python311Full
-    python311Packages.kubernetes
-    python311Packages.pip
-    python311Packages.pylint
+    # python311Full
+    # python311Packages.pip
+    # python311Packages.flake8
+    # python311Packages.python-lsp-server
+    # python311Packages.python-lsp-ruff
+    # python311Packages.python-lsp-black
     ripgrep    # neovim / telescope dependency
     rsync
     rustc
@@ -64,6 +66,15 @@
     xsel      # neovim dep
     yq
     zsh
+    (pkgs.python311.withPackages (ppkgs: with ppkgs; [
+      # some neovim python plugins search for dependencies here, not programs.neovim.extraPython3Packages!!!
+      jedi # <= dependency for pylsp
+      # pylint
+      python-lsp-server
+      # mypy
+      autopep8 # <== kick in auto-lintng with pylsp
+      kubernetes
+    ]))
 
   # # It is sometimes useful to fine-tune packages, for example, by applying
   # # overrides. You can do that directly here, just don't forget the
@@ -102,13 +113,25 @@ imports = [
   ./neovim/lualine.nix
   ./neovim/nvim-tree.nix
   ./neovim/options.nix
+  ./neovim/lsp-config.nix
 ];
 
 programs.neovim = {
   enable = true;
   defaultEditor = true;
-  #extraConfig = ''
-  #'';
+  withNodeJs = true;
+  withPython3 = true;
+  # extraPackages = with pkgs; [
+  #   nodePackages.pyright # neo pep8, just type checker
+  # ];
+
+  # this is a function taking a package as an argument:
+  # Python packages which need to be available for nvim
+  # have to go here:
+  extraPython3Packages = (ps: with ps; [
+    # autopep8
+  ]);
+
 
   plugins = with pkgs.vimPlugins; [
     autoclose-nvim
@@ -120,6 +143,7 @@ programs.neovim = {
     vim-fugitive
     vim-nix
     vim-sort-motion
+    vim-flake8
   ];
 
 
@@ -136,6 +160,7 @@ programs.neovim = {
 
         -- helps un/commenting lines:
         require('nvim_comment').setup()
+
 END
 
       colorscheme gruvbox
@@ -145,12 +170,13 @@ END
   '';
 };
 
-  programs.powerline-go = {
+programs.powerline-go = {
     enable = true;
     modules = [ "venv" "user" "host" "cwd" "perms" "git" "exit" "root" "kube" ];
     settings = { theme = "solarized-dark16"; };
-  };
-  programs.zsh = {
+};
+
+programs.zsh = {
     enable = true;
     autocd = true;
     initExtra = ''
@@ -189,7 +215,7 @@ END
       plugins = [ "lxd" ];
       theme = "agnoster";
     };
-  };
+};
 
   # Let Home Manager install and manage itself.
   programs.git = {
