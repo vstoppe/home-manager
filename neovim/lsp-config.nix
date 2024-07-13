@@ -56,6 +56,13 @@
                 pylsp = {
                   configurationSources = "flake8",
                   plugins = {
+                    jedi_completion = {
+                      enabled = true,
+                      include_class_objects = true,
+                      include_function_objects = true,
+                      fuzzy = true,
+                      eager = true,
+                    },
                     pylint = {
                       enabled = false
                     },

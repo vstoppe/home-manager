@@ -71,7 +71,7 @@
       # mypy
       # pylint
       autopep8 # <== kick in auto-lintng with pylsp
-      jedi # <= dependency for pylsp
+      jedi # <= Provides Completions, Definitions, Hover, References, Signature Help, and Symbols for pylsp
       kubernetes
       python-lsp-server
       rope # <== for Completions and renaming (pylsp)
@@ -123,9 +123,8 @@ programs.neovim = {
   withNodeJs = true;
   withPython3 = true;
   extraPackages = with pkgs; [
-    # nodePackages.pyright # neo pep8, just type checker
-    # lua53Packages.lua-lsp
     lua-language-server
+    nodePackages.bash-language-server
   ];
 
   # this is a function taking a package as an argument:
