@@ -52,7 +52,6 @@
     postgresql_15
     # python311Full
     # python311Packages.pip
-    # python311Packages.flake8
     # python311Packages.python-lsp-server
     # python311Packages.python-lsp-ruff
     # python311Packages.python-lsp-black
@@ -68,8 +67,6 @@
     zsh
     (pkgs.python311.withPackages (ppkgs: with ppkgs; [
       # some neovim python plugins search for dependencies here, not programs.neovim.extraPython3Packages!!!
-      # mypy
-      # pylint
       autopep8 # <== kick in auto-lintng with pylsp
       jedi # <= Provides Completions, Definitions, Hover, References, Signature Help, and Symbols for pylsp
       kubernetes
@@ -145,7 +142,6 @@ programs.neovim = {
     vim-fugitive
     vim-nix
     vim-sort-motion
-    vim-flake8
   ];
 
 
