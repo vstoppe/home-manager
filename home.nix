@@ -68,12 +68,13 @@
     zsh
     (pkgs.python311.withPackages (ppkgs: with ppkgs; [
       # some neovim python plugins search for dependencies here, not programs.neovim.extraPython3Packages!!!
-      jedi # <= dependency for pylsp
-      # pylint
-      python-lsp-server
       # mypy
+      # pylint
       autopep8 # <== kick in auto-lintng with pylsp
+      jedi # <= dependency for pylsp
       kubernetes
+      python-lsp-server
+      rope # <== for Completions and renaming (pylsp)
     ]))
 
   # # It is sometimes useful to fine-tune packages, for example, by applying
