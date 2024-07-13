@@ -122,9 +122,11 @@ programs.neovim = {
   defaultEditor = true;
   withNodeJs = true;
   withPython3 = true;
-  # extraPackages = with pkgs; [
-  #   nodePackages.pyright # neo pep8, just type checker
-  # ];
+  extraPackages = with pkgs; [
+    # nodePackages.pyright # neo pep8, just type checker
+    # lua53Packages.lua-lsp
+    lua-language-server
+  ];
 
   # this is a function taking a package as an argument:
   # Python packages which need to be available for nvim
