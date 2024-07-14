@@ -88,7 +88,7 @@
         )
         require('lspconfig').bashls.setup{}
         require('lspconfig').lua_ls.setup {}
-        require('lspconfig').rnix.setup {}
+        require('lspconfig').nil_ls.setup {}
         require('lspconfig').vimls.setup{}
         require('lspconfig').rust_analyzer.setup{
           settings = {

@@ -122,6 +122,7 @@ programs.neovim = {
   extraPackages = with pkgs; [
     lua-language-server
     nodePackages.bash-language-server
+    nil # <== language-server for nix
   ];
 
   # this is a function taking a package as an argument:
