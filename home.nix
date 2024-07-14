@@ -101,10 +101,11 @@ home.sessionVariables = {
 imports = [
   ./neovim/completion.nix
   ./neovim/keymaps.nix
+  ./neovim/lsp-config.nix
   ./neovim/lualine.nix
   ./neovim/nvim-tree.nix
   ./neovim/options.nix
-  ./neovim/lsp-config.nix
+  ./neovim/treesitter.nix
 ];
 
 programs.neovim = {
@@ -133,6 +134,7 @@ programs.neovim = {
     nvim-comment
     nvim-surround
     nvim-web-devicons # needed for lualine-nvim
+    rainbow-delimiters-nvim
     vim-fugitive
     vim-nix
     vim-sort-motion
@@ -152,6 +154,8 @@ programs.neovim = {
 
         -- helps un/commenting lines:
         require('nvim_comment').setup()
+
+        require('rainbow-delimiters.setup').setup()
 
 END
 

@@ -8,6 +8,7 @@
 
     extraConfig = ''
       lua << END
+
         -- Set different settings for different languages' LSP
         -- LSP list: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
         -- How to use setup({}): https://github.com/neovim/nvim-lspconfig/wiki/Understanding-setup-%7B%7D
