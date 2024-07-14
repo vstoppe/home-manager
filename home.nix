@@ -135,7 +135,6 @@ programs.neovim = {
     nvim-comment
     nvim-surround
     nvim-web-devicons # needed for lualine-nvim
-    rainbow-delimiters-nvim
     vim-fugitive
     vim-nix
     vim-sort-motion
@@ -145,6 +144,7 @@ programs.neovim = {
   extraConfig = ''
     lua << END
 
+        -- require('rainbow-delimiters.setup').setup()
         require('autoclose').setup()
 
         -- setup indent-blankline: add lines to help identify indentions
@@ -156,7 +156,6 @@ programs.neovim = {
         -- helps un/commenting lines:
         require('nvim_comment').setup()
 
-        require('rainbow-delimiters.setup').setup()
 
 END
 

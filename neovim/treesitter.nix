@@ -18,6 +18,7 @@
       nvim-treesitter-parsers.vim
       nvim-treesitter-parsers.vimdoc
       nvim-treesitter-parsers.yaml
+      rainbow-delimiters-nvim
     ];
 
     extraConfig = ''
@@ -67,6 +68,12 @@
             -- Using this option may slow down your editor, and you may see some duplicate highlights.
             -- Instead of true it can also be a list of languages
             additional_vim_regex_highlighting = true,
+          },
+          -- rainbow-delimiters are only activated here:
+          rainbow = {
+            enable = true,
+            query = 'rainbow-parens',
+            strategy = require('rainbow-delimiters').strategy['global'],
           },
           indent = { enable = true, disable = { "yaml" } },
         }
