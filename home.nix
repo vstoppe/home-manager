@@ -23,9 +23,7 @@
   home.packages = with pkgs; [
   	docker
   	docker-compose
-    # neovim
     # vagrant
-    # vimPlugins.nvim-tree-lua
     # virt-manager # <== failed to build in 24.05
     ansible
     argocd
@@ -50,11 +48,6 @@
     nodejs_18  # neovim / ls dependency
     operator-sdk # manage operator lifecycle manager
     postgresql_15
-    # python311Full
-    # python311Packages.pip
-    # python311Packages.python-lsp-server
-    # python311Packages.python-lsp-ruff
-    # python311Packages.python-lsp-black
     ripgrep    # neovim / telescope dependency
     rsync
     rustc
