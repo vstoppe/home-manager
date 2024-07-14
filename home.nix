@@ -115,6 +115,7 @@ programs.neovim = {
   withPython3 = true;
   extraPackages = with pkgs; [
     lua-language-server
+    yaml-language-server
     nodePackages.bash-language-server
     nil # <== language-server for nix
   ];
