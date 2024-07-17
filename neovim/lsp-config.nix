@@ -55,7 +55,7 @@
             on_attach = on_attach, 
               settings = {
                 pylsp = {
-                  configurationSources = "flake8",
+                  configurationSources = "pycodestyle",
                   plugins = {
                     jedi_completion = {
                       enabled = true,
@@ -68,7 +68,7 @@
                       enabled = false
                     },
                     flake8 = {
-                      enabled = true
+                      enabled = false
                     },
                     pyls_mypy = {
                       enabled = true,

@@ -19,8 +19,12 @@
     (pkgs.python311.withPackages (ppkgs: with ppkgs; [
       # some neovim python plugins search for dependencies here, not programs.neovim.extraPython3Packages!!!
       autopep8 # <== kick in auto-lintng with pylsp
+      flake8
       jedi # <= Provides Completions, Definitions, Hover, References, Signature Help, and Symbols for pylsp
       kubernetes
+      mccabe
+      pycodestyle
+      pyflakes
       python-lsp-server
       rope # <== for Completions and renaming (pylsp)
     ]))
