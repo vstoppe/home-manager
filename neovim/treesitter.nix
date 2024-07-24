@@ -4,20 +4,7 @@
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       nvim-treesitter
-      nvim-treesitter-parsers.bash
-      nvim-treesitter-parsers.dockerfile
-      nvim-treesitter-parsers.helm
-      nvim-treesitter-parsers.html
-      nvim-treesitter-parsers.json
-      nvim-treesitter-parsers.json5
-      nvim-treesitter-parsers.lua
-      nvim-treesitter-parsers.markdown
-      nvim-treesitter-parsers.python
-      nvim-treesitter-parsers.rust
-      nvim-treesitter-parsers.sql
-      nvim-treesitter-parsers.vim
-      nvim-treesitter-parsers.vimdoc
-      nvim-treesitter-parsers.yaml
+      nvim-treesitter.withAllGrammars
       rainbow-delimiters-nvim
     ];
 
