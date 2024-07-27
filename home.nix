@@ -9,7 +9,7 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "vst";
-  home.homeDirectory = "/Users/vst";
+  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}";
   home.sessionPath = [
     "$HOME/bin"
   ];
@@ -37,6 +37,7 @@
     cilium-cli
     curl
     dyff
+    gcc # also used for neovim / lua stuff
     git-sync
     hubble
     jq
@@ -48,7 +49,7 @@
     kubernetes-helm
     kubeswitch
     netdiscover
-    nix # nix-build not found without this pakage
+    # nix # nix-build not found without this pakage, but might break installation of home-manager env
     nmap
     operator-sdk # manage operator lifecycle manager
     postgresql_15
