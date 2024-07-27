@@ -37,7 +37,7 @@
     cilium-cli
     curl
     dyff
-    gcc # also used for neovim / lua stuff
+    # gcc # also used for neovim / lua stuff
     git-sync
     hubble
     jq
@@ -49,7 +49,7 @@
     kubernetes-helm
     kubeswitch
     netdiscover
-    # nix # nix-build not found without this pakage, but might break installation of home-manager env
+    nix # nix-build not found without this pakage, but might break installation of home-manager env
     nmap
     operator-sdk # manage operator lifecycle manager
     postgresql_15
