@@ -9,7 +9,6 @@
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "vst";
-  # home.homeDirectory = "/Users/vst";
   home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}";
   home.sessionPath = [
     "$HOME/bin"
