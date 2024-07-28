@@ -9,6 +9,7 @@
     ./neovim/nvim-tree.nix
     ./neovim/options.nix
     ./neovim/treesitter.nix
+    ./neovim/packer.nix
   ];
 
   home.packages = with pkgs; [
