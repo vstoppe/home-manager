@@ -2,10 +2,6 @@
 
 {
   programs.neovim = {
-    plugins = with pkgs.vimPlugins; [
-      telescope-nvim
-    ];
-
     extraConfig = ''
       lua << END
 

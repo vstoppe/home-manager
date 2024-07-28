@@ -10,6 +10,7 @@
     ./neovim/options.nix
     ./neovim/treesitter.nix
     ./neovim/packer.nix
+    ./neovim/telescope.nix
   ];
 
   home.packages = with pkgs; [
@@ -62,6 +63,7 @@
       vim-fugitive
       vim-nix
       vim-sort-motion
+      telescope-nvim
     ];
 
 

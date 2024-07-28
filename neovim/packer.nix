@@ -24,6 +24,14 @@
           end,
         })
 
+        use { "dapc11/telescope-yaml.nvim" }
+
+        use {
+          "cuducos/yaml.nvim",
+          ft = { "yaml" }, -- optional
+        }
+      
+
 
         -- Automatically set up your configuration after cloning packer.nvim
         -- Put this at the end after all plugins
