@@ -23,6 +23,10 @@
         vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
         vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
 
+
+        -- vim.keymap.set('n', '<C-p>', "%! jq .<CR>", opts)
+        vim.keymap.set('n', '<C-p>', "%! jq .<CR> | %s/\\n/\r/g <CR>", opts)
+
         -- Resize with arrows
         -- delta: 2 lines
         vim.keymap.set('n', '<C-Up>', ':resize -2<CR>', opts)
