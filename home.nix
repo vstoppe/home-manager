@@ -37,7 +37,7 @@
     cilium-cli
     curl
     dyff
-    # gcc # also used for neovim / lua stuff
+    gcc # also used for neovim / lua stuff
     git-sync
     hubble
     jq
