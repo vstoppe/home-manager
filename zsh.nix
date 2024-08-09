@@ -14,6 +14,7 @@
     historySubstringSearch.enable = true;
     localVariables = {
       PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH";
+      SSH_AUTH_SOCK = pkgs.lib.optional pkgs.stdenv.isLinux "$XDG_RUNTIME_DIR/ssh-agent.socket"; # <= optiona value for Linux
     };
     shellAliases = {
       e = "exit";
