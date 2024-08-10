@@ -14,7 +14,13 @@
     historySubstringSearch.enable = true;
     localVariables = {
       PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH";
-      SSH_AUTH_SOCK = pkgs.lib.optional pkgs.stdenv.isLinux "$XDG_RUNTIME_DIR/ssh-agent.socket"; # <= optiona value for Linux
+      # ${if config.stdenv.hostPlatform.isLinux then "SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket; else ""}
+      # ${pkgs.lib.mkIf config.stdenv.hostPlatform.isLinux "SSH_AUTH_SOCK"} = true;
+      # ${pkgs.lib.mkIf config.stdenv.hostPlatform.isLinux "linux-setting"} = true;
+      # ${if config.stdenv.hostPlatform.isLinux "linux-setting"; fi} = true; 
+      # ${pkgs.lib.mkIf config.stdenv.hostPlatform.isLinux "linux-setting"} = true;
+      # SSH_AUTH_SOCK = pkgs.lib.optional config.stdenv.hostPlatform.isLinux "hü";
+      # SSH_AUTH_SOCK = pkgs.lib.optional pkgs.stdenv.isLinux "$XDG_RUNTIME_DIR/ssh-agent.socket";
     };
     shellAliases = {
       e = "exit";

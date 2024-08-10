@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 
+
 {
   imports = [
     ./neovim.nix
@@ -21,6 +22,8 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
+
+
   home.stateVersion = "24.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
@@ -90,7 +93,24 @@
   home.sessionVariables = {
     DOCKER_HOST="ssh://root@onyx";
     EDITOR = "nvim";
+    # ${pkgs.lib.mkIf config.stdenv.hostPlatform.isLinux "linux-setting"} = "hü";
+      # SSH_AUTH_SOCK =  "\$XDG_RUNTIME_DIR/ssh-agent.socket";  # <= funzt
+    SSH_AUTH_SOCK = if pkgs.stdenv.hostPlatform.isLinux then "\$XDG_RUNTIME_DIR/ssh-agent" else null;   # <= funzt
+    # ${if config.stdenv.hostPlatform.isLinux then "SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket" else ""};
+    # ${if config.stdenv.hostPlatform.isLinux "linux-setting"; fi} = true;
+
   };
+
+
+  # home.sessionVariables = pkgs.lib.mkIf config.stdenv.hostPlatform.isLinux {
+  #   SSH_AUTH_SOCK =  "\$XDG_RUNTIME_DIR/ssh-agent.socket";
+  # };
+
+
+  services.ssh-agent = {
+    # ifLinux enable => true
+    enable = pkgs.stdenv.isLinux;
+   };
 
 
   programs.powerline-go = {
