@@ -93,18 +93,9 @@
   home.sessionVariables = {
     DOCKER_HOST="ssh://root@onyx";
     EDITOR = "nvim";
-    # ${pkgs.lib.mkIf config.stdenv.hostPlatform.isLinux "linux-setting"} = "hü";
-      # SSH_AUTH_SOCK =  "\$XDG_RUNTIME_DIR/ssh-agent.socket";  # <= funzt
-    SSH_AUTH_SOCK = if pkgs.stdenv.hostPlatform.isLinux then "\$XDG_RUNTIME_DIR/ssh-agent" else null;   # <= funzt
-    # ${if config.stdenv.hostPlatform.isLinux then "SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket" else ""};
-    # ${if config.stdenv.hostPlatform.isLinux "linux-setting"; fi} = true;
-
+    # custom socket for Linux and reuse default socket on Darwin.
+    SSH_AUTH_SOCK = if pkgs.stdenv.hostPlatform.isLinux then "\$XDG_RUNTIME_DIR/ssh-agent" else "\$SSH_AUTH_SOCK";   # <= funzt
   };
-
-
-  # home.sessionVariables = pkgs.lib.mkIf config.stdenv.hostPlatform.isLinux {
-  #   SSH_AUTH_SOCK =  "\$XDG_RUNTIME_DIR/ssh-agent.socket";
-  # };
 
 
   services.ssh-agent = {
