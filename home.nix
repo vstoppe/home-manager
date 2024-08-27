@@ -55,6 +55,7 @@
     nix # nix-build not found without this pakage, but might break installation of home-manager env
     nmap
     operator-sdk # manage operator lifecycle manager
+    p7zip
     postgresql_15
     rsync
     rustc
