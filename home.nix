@@ -12,7 +12,7 @@
   home.username = "vst";
   home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}";
   home.sessionPath = [
-    "$HOME/bin"
+    "$HOME/bin:$HOME/.rd/bin"
   ];
 
   # This value determines the Home Manager release that your configuration is
