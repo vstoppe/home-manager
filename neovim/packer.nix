@@ -12,7 +12,9 @@
 
         return require('packer').startup(function(use)
 
+
         -- install the indent-tools
+
         use({
           "arsham/indent-tools.nvim",
           requires = {
@@ -33,6 +35,7 @@
       
 
         -- install markdown support
+
         use({
             'MeanderingProgrammer/render-markdown.nvim',
             -- after = { 'nvim-treesitter' }, -- dep not found by packer / should be installed by nix
@@ -42,6 +45,28 @@
             config = function()
                 require('render-markdown').setup({})
             end,
+        })
+
+
+        -- install neovim-project (manager)
+
+        use({
+          "coffebar/neovim-project",
+          config = function()
+            -- enable saving the state of plugins in the session
+            vim.opt.sessionoptions:append("globals") -- save global variables that start with an uppercase letter and contain at least one lowercase letter.
+            -- setup neovim-project plugin
+            require("neovim-project").setup {
+              projects = { -- define project roots
+                "~/workspace/*",
+                "~/.config/*",
+              },
+            }
+          end,
+          requires = {
+            { "nvim-telescope/telescope.nvim", tag = "0.1.4" },
+            { "Shatur/neovim-session-manager" },
+          }
         })
 
 

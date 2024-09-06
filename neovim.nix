@@ -8,9 +8,10 @@
     ./neovim/lualine.nix
     ./neovim/nvim-tree.nix
     ./neovim/options.nix
-    ./neovim/treesitter.nix
     ./neovim/packer.nix
+    ./neovim/project.nix
     ./neovim/telescope.nix
+    ./neovim/treesitter.nix
   ];
 
   home.packages = with pkgs; [

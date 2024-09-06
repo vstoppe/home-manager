@@ -46,6 +46,10 @@
         vim.opt.termguicolors = true
         local nvimtree = require("nvim-tree.api")
         vim.keymap.set('n', '<leader>tt', nvimtree.tree.toggle, {})
+        -- vim-tree / nvim-project --
+        vim.keymap.set('n', '<leader>dp', '<Cmd>Telescope neovim-project discover<CR>', {})
+        vim.keymap.set('n', '<leader>ph', '<Cmd>Telescope neovim-project history<CR>', {})
+        vim.keymap.set('n', '<leader>rp', '<Cmd>NeovimProjectLoadRecent<CR>', {})
 
       END
       '';
