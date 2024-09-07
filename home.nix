@@ -51,6 +51,7 @@
     kubectx
     kubernetes-helm
     kubeswitch
+	kustomize
     netdiscover
     nix # nix-build not found without this pakage, but might break installation of home-manager env
     nmap
