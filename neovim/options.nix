@@ -51,6 +51,9 @@
         vim.keymap.set('n', '<leader>ph', '<Cmd>Telescope neovim-project history<CR>', {})
         vim.keymap.set('n', '<leader>rp', '<Cmd>NeovimProjectLoadRecent<CR>', {})
 
+        -- in insert mode move cursor one char right by pressing <ctrl>f
+        vim.keymap.set('i', '<c-f>', '<right>', {})
+
       END
       '';
   };
