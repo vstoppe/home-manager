@@ -72,7 +72,15 @@
       lua << END
 
           -- require('rainbow-delimiters.setup').setup()
-          require('autoclose').setup()
+          require('autoclose').setup({
+
+            keys = {
+              -- In Markdown autoclose the backticks is annoying for codeblocks ("```")
+              ["`"] = { close = false, disabled_filetypes = { "markdown"} },
+            },
+
+
+          })
 
           -- setup indent-blankline: add lines to help identify indentions
           require('ibl').setup()
