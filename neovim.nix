@@ -16,6 +16,7 @@
 
   home.packages = with pkgs; [
     nodejs_18  # neovim / ls dependency
+    helm-ls    # helm-language-server binary
     ripgrep    # neovim / telescope dependency
     shellcheck # neovim / lsp depencency
     xsel       # neovim dep
@@ -23,7 +24,7 @@
       # some neovim python plugins search for dependencies here, not programs.neovim.extraPython3Packages!!!
       autopep8 # <== kick in auto-lintng with pylsp
       flake8
-      jedi # <= Provides Completions, Definitions, Hover, References, Signature Help, and Symbols for pylsp
+      jedi # <= Provides Completions, Definitions, Hover, Referpnces, Signature Help, and Symbols for pylsp
       kubernetes
       mccabe
       pycodestyle

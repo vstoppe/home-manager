@@ -2,9 +2,9 @@
 
 {
   programs.neovim = {
-    # plugins = with pkgs.vimPlugins; [
-    #   lualine-nvim
-    # ];
+    plugins = with pkgs.vimPlugins; [
+      vim-helm #  <== for helm file highlight
+    ];
 
     extraConfig = ''
       lua << END
@@ -100,6 +100,8 @@
             }
           }
         }
+
+
         require('lspconfig').yamlls.setup{
 
           settings = {
@@ -121,8 +123,29 @@
               },
             },
           },
-
         }
+
+
+        -- Here we differentiate yaml from helm files:
+        vim.filetype.add({
+          pattern = {
+            [".*/templates/.*%.yaml"] = "helm",
+          },
+        })
+
+        require'lspconfig'.helm_ls.setup{
+          settings = {
+            ['helm-ls'] = {
+              yamlls = {
+                path = "yaml-language-server",
+              }
+            }
+          }
+        }
+
+
+
+
       END
       '';
   };
