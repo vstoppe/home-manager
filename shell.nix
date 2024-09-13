@@ -28,7 +28,9 @@
     };
 
     ### The better "cd"..
-    zoxide.enable = true;
+    zoxide = {
+      enable = true;
+    };
 
 
     zsh = {
@@ -42,6 +44,8 @@
       initExtraBeforeCompInit= ''
         ### initialize zinit plugin manager
         # do "touch $ZINIT[MAN_DIR]/man1/zinit.1" to prevent "/zinit.1: No such file or directory" error
+        declare -A ZINIT
+        declare ZINIT[NO_ALIASES]=1  # do not create aliases for zi or zini / breaks zi (zoxide interactive)
         source "$HOME/.nix-profile/share/zinit/zinit.zsh"
         zinit snippet OMZP::eza
         zinit snippet OMZP::git
@@ -70,6 +74,7 @@
         PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH";
       };
       shellAliases = {
+        cd = "z";
         e = "exit";
         gb = "git branch";
         gp = "git push";
@@ -77,8 +82,6 @@
         h3 = "helm";
         k = "kubectl";
         kubectl = "kubecolor --light-background";
-        # l  = "eza -l";
-        # ll = "ls -lh";
         nixvim = "nvim";
         ns  = "switch ns";
         # nvim = "nvim -u ~/.config/nvim/init.lua";
