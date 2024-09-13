@@ -16,7 +16,6 @@
         enable = true;
     };
 
-
     zsh = {
       enable = true;
       autocd = true;
@@ -25,16 +24,21 @@
         enable = true;
         caseSensitive = false;
       }; 
-      initExtra = ''
+      initExtraBeforeCompInit= ''
         ### initialize zinit plugin manager
         # do "touch $ZINIT[MAN_DIR]/man1/zinit.1" to prevent "/zinit.1: No such file or directory" error
         source "$HOME/.nix-profile/share/zinit/zinit.zsh"
         zinit snippet OMZP::git
         zinit snippet OMZP::kubectl
+        zinit snippet OMZP::kubectx
         
         compdef kubecolor=kubectl
         source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
+      '';
+      initExtra = ''
+        ### cdreplay should be anabled, throws an error, but nothing is missing
+        # zinit cdreplay -q  # Replay compdefs (to be done after compinit)
       '';
       # enableAutosuggestions = true; <== outdated with 24.05
       autosuggestion.enable = true;
