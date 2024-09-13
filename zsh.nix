@@ -2,11 +2,10 @@
 
 {
 
+  programs.dircolors.enable = true;
+
   programs.fzf = {
     enable = true;
-
-
-
   };
 
 
@@ -14,6 +13,11 @@
   programs.zsh = {
     enable = true;
     autocd = true;
+    prezto = {
+      # configuration framework for zsh
+      enable = true;
+      caseSensitive = false;
+    }; 
     initExtra = ''
     compdef kubecolor=kubectl
     '';
