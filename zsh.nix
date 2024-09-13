@@ -1,6 +1,16 @@
 { config, pkgs, ... }:
 
 {
+
+  programs.fzf = {
+    enable = true;
+
+
+
+  };
+
+
+
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -10,8 +20,11 @@
     # enableAutosuggestions = true; <== outdated with 24.05
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    history.extended = true;
-    historySubstringSearch.enable = true;
+    history = {
+      extended = true;
+      ignoreAllDups = true;
+      ignoreSpace = true;
+    };     historySubstringSearch.enable = true;
     localVariables = {
       PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH";
     };
