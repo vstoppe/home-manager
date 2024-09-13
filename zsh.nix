@@ -24,6 +24,7 @@
     initExtra = ''
       compdef kubecolor=kubectl
       source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+      zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
     '';
     # enableAutosuggestions = true; <== outdated with 24.05
     autosuggestion.enable = true;
