@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    zsh-fzf-tab
+  ];
 
   programs.dircolors.enable = true;
 
@@ -19,7 +22,8 @@
       caseSensitive = false;
     }; 
     initExtra = ''
-    compdef kubecolor=kubectl
+      compdef kubecolor=kubectl
+      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
     '';
     # enableAutosuggestions = true; <== outdated with 24.05
     autosuggestion.enable = true;
