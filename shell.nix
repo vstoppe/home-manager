@@ -76,9 +76,6 @@
       shellAliases = {
         cd = "z";
         e = "exit";
-        gb = "git branch";
-        gp = "git push";
-        gs = "git status";
         h3 = "helm";
         k = "kubectl";
         kubectl = "kubecolor --light-background";
