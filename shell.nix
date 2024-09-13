@@ -11,6 +11,7 @@
 
     dircolors.enable = true;
 
+    ### The better "ls"
     eza = {
       enable = true;
       icons = true;
@@ -25,6 +26,10 @@
     fzf = {
         enable = true;
     };
+
+    ### The better "cd"..
+    zoxide.enable = true;
+
 
     zsh = {
       enable = true;
@@ -43,13 +48,15 @@
         zinit snippet OMZP::kubectl
         zinit snippet OMZP::kubectx
         
-        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
+        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+        
       '';
       initExtra = ''
-        ### cdreplay should be anabled, throws an error, but nothing is missing
-        # zinit cdreplay -q  # Replay compdefs (to be done after compinit)
         compdef kubecolor=kubectl
+        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
+        ### cdreplay should be anabled, throws an error, but nothing is missing
+        zinit cdreplay -q  # Replay compdefs (to be done after compinit)
       '';
       # enableAutosuggestions = true; <== outdated with 24.05
       autosuggestion.enable = true;
