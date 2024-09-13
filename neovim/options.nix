@@ -54,6 +54,8 @@
         -- in insert mode move cursor one char right by pressing <ctrl>f
         vim.keymap.set('i', '<c-f>', '<right>', {})
 
+        vim.keymap.set("n", "<leader>k", '<cmd>lua require("kubectl").toggle()<cr>', { noremap = true, silent = true })
+
       END
       '';
   };
