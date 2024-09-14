@@ -39,6 +39,7 @@
     defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
+    vimAlias = true;
     extraPackages = with pkgs; [
       lua-language-server
       yaml-language-server

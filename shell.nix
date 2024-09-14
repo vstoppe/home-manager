@@ -84,9 +84,7 @@
         h3 = "helm";
         k = "kubectl";
         kubectl = "kubecolor --light-background";
-        nixvim = "nvim";
         ns  = "switch ns";
-        # nvim = "nvim -u ~/.config/nvim/init.lua";
         update = "home-manager switch";
         wp = "watch kubectl get po";
         ws  = "cd ~/workspace/";
