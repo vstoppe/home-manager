@@ -40,28 +40,40 @@
         # configuration framework for zsh
         enable = true;
         caseSensitive = false;
+        prompt = {
+          theme = "powerlevel10k";
+        }; 
       }; 
+
+
       initExtraBeforeCompInit= ''
         ### initialize zinit plugin manager
         # do "touch $ZINIT[MAN_DIR]/man1/zinit.1" to prevent "/zinit.1: No such file or directory" error
         declare -A ZINIT
         declare ZINIT[NO_ALIASES]=1  # do not create aliases for zi or zini / breaks zi (zoxide interactive)
         source "$HOME/.nix-profile/share/zinit/zinit.zsh"
+    # zsh-powerlevel10k
+    # zsh-powerlevel10k
+    # zsh-powerlevel10k
+    # zsh-powerlevel10k
+    # zsh-powerlevel10k
+    # zsh-powerlevel10k
+    # zsh-powerlevel10k
         zinit snippet OMZP::eza
         zinit snippet OMZP::git
         zinit snippet OMZP::kubectl
         zinit snippet OMZP::kubectx
-        
-        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-        
       '';
+
       initExtra = ''
         compdef kubecolor=kubectl
         source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-        zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color=always $realpath'
-        ### cdreplay should be anabled, throws an error, but nothing is missing
+        zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --group-directories-first $realpath'  # dir preview
+        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
         zinit cdreplay -q  # Replay compdefs (to be done after compinit)
+        source ~/.p10k.zsh
       '';
+
       # enableAutosuggestions = true; <== outdated with 24.05
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
@@ -89,11 +101,19 @@
         wsa = "cd ~/workspace/ansible";
         wsh = "cd ~/workspace/homelab";
       };
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "lxd" ];
-        theme = "agnoster";
-      };
+
+      plugins = [
+        {
+          name = "powerlevel10k";
+          src = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        }
+        {
+          name = "powerlevel10k-config";
+          src = ./dotfiles;
+          file = "p10k.zshs";
+        }
+      ];
     };
   };
 }
