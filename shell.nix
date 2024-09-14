@@ -52,13 +52,6 @@
         declare -A ZINIT
         declare ZINIT[NO_ALIASES]=1  # do not create aliases for zi or zini / breaks zi (zoxide interactive)
         source "$HOME/.nix-profile/share/zinit/zinit.zsh"
-    # zsh-powerlevel10k
-    # zsh-powerlevel10k
-    # zsh-powerlevel10k
-    # zsh-powerlevel10k
-    # zsh-powerlevel10k
-    # zsh-powerlevel10k
-    # zsh-powerlevel10k
         zinit snippet OMZP::eza
         zinit snippet OMZP::git
         zinit snippet OMZP::kubectl
