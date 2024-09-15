@@ -31,6 +31,7 @@
       kubecolor
       kubeswitch
       nix # nix-build not found without this pakage, but might break installation of home-manager env
+      nix-du
       p7zip
       yq
       # It is sometimes useful to fine-tune packages, for example, by applying

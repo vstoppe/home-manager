@@ -15,6 +15,7 @@
   ];
 
   home.packages = with pkgs; [
+
     nodejs_18  # neovim / ls dependency
     helm-ls    # helm-language-server binary
     ripgrep    # neovim / telescope dependency
@@ -58,15 +59,16 @@
 
     plugins = with pkgs.vimPlugins; [
       autoclose-nvim
-      gruvbox-nvim
+      gruvbox-nvim # colorscheme
       indent-blankline-nvim
+      nightfox-nvim # colorscheme
       nvim-comment
       nvim-surround
       nvim-web-devicons # needed for lualine-nvim
+      telescope-nvim
       vim-fugitive
       vim-nix
       vim-sort-motion
-      telescope-nvim
     ];
 
 
@@ -94,7 +96,7 @@
           require('nvim_comment').setup()
       END
 
-        colorscheme gruvbox
+        colorscheme dawnfox
 
         " Enable syntax highlighting
         syntax enable
