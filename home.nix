@@ -7,74 +7,73 @@
     ./shell.nix
   ];
 
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = builtins.getEnv "USER";  #  <== only works with "--impure" switch
-  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}";
-  home.sessionPath = [
-    "$HOME/bin:$HOME/.rd/bin"
-  ];
+  home = {
+    username = builtins.getEnv "USER";  #  <== only works with "--impure" switch
+    homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}";
+    sessionPath = [
+      "$HOME/bin:$HOME/.rd/bin"
+    ];
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
+    stateVersion = "24.05"; # Please read the comment before changing.
+
+    ### common packages 
+    packages = with pkgs; [
+      # vagrant
+      # virt-manager # <== failed to build in 24.05
+      bat # colorful cat alternative
+      cilium-cli
+      dyff
+      gcc # also used for neovim / lua stuff
+      hubble
+      jq
+      k9s
+      krew
+      kubecolor
+      kubeswitch
+      nix # nix-build not found without this pakage, but might break installation of home-manager env
+      p7zip
+      yq
+      # It is sometimes useful to fine-tune packages, for example, by applying
+      # overrides. You can do that directly here, just don't forget the
+      # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    ] ++ (if config.home.username == "vst" then 
+    [
+      # Packages I don't need to install in work environment.
+      ansible
+      argocd
+      cargo
+      curl
+      docker
+      docker-compose
+      kubectl
+      kubectx
+      kubernetes-helm
+      kustomize
+      netdiscover
+      nmap
+      operator-sdk # manage operator lifecycle manager
+      postgresql_15
+      rsync
+      rustc
+      unixtools.watch
+      wakeonlan
+      wget
+      zsh
+    ] 
+    else []);
 
 
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+    #programs.git = lib.mkIf (config.home.username == "vst") {
+    # packages = lib.mkIf (config.home.username == "vst") = with pkgs; [
+    #   kubectx
+    # ];
 
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = with pkgs; [
-  	docker
-  	docker-compose
-    # vagrant
-    # virt-manager # <== failed to build in 24.05
-    ansible
-    argocd
-    bat # colorful cat alternative
-    cargo
-    cilium-cli
-    curl
-    dyff
-    gcc # also used for neovim / lua stuff
-    git-sync
-    hubble
-    jq
-    k9s
-    krew
-    kubecolor
-    kubectl
-    kubectx
-    kubernetes-helm
-    kubeswitch
-    kustomize
-    netdiscover
-    nix # nix-build not found without this pakage, but might break installation of home-manager env
-    nmap
-    operator-sdk # manage operator lifecycle manager
-    p7zip
-    postgresql_15
-    rsync
-    rustc
-    unixtools.watch
-    wakeonlan
-    wget
-    yq
-    zsh
-    # It is sometimes useful to fine-tune packages, for example, by applying
-    # overrides. You can do that directly here, just don't forget the
-    # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file = {
+    file = {
     ".p10k.zsh".source = dotfiles/p10k.zsh;
 
     # # You can also set the file content immediately.
@@ -89,28 +88,29 @@
   # source
   #
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  home.sessionVariables = {
-    # DOCKER_HOST="ssh://root@onyx";
-    EDITOR = "nvim";
-    # custom socket for Linux and reuse default socket on Darwin.
-    SSH_AUTH_SOCK = if pkgs.stdenv.hostPlatform.isLinux then "\$XDG_RUNTIME_DIR/ssh-agent" else "\$SSH_AUTH_SOCK";   # <= funzt
+    sessionVariables = {
+      # DOCKER_HOST="ssh://root@onyx";
+      EDITOR = "nvim";
+      # custom socket for Linux and reuse default socket on Darwin.
+      SSH_AUTH_SOCK = if pkgs.stdenv.hostPlatform.isLinux then "\$XDG_RUNTIME_DIR/ssh-agent" else "\$SSH_AUTH_SOCK";   # <= funzt
+    };
   };
 
 
   services.ssh-agent = {
     # ifLinux enable => true
     enable = pkgs.stdenv.isLinux;
-   };
+  };
 
 
   programs.powerline-go = {
-      enable = true;
+      enable = false;
       modules = [ "venv" "user" "host" "cwd" "perms" "git" "exit" "root" "kube" ];
       settings = { theme = "solarized-dark16"; };
   };
 
 
-    # Let Home Manager install and manage itself.
+  # Let Home Manager install and manage itself.
   programs.git = lib.mkIf (config.home.username == "vst") {
     enable    =  true;
     userEmail = "vst@lindenbox.de";
@@ -124,3 +124,4 @@
 
   programs.home-manager.enable = true;
 }
+
