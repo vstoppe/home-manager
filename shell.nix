@@ -2,8 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    zsh-fzf-tab
+    oh-my-posh
     zinit # plugin manager
+    zsh-fzf-tab
   ];
 
 
@@ -32,6 +33,33 @@
       enable = true;
     };
 
+
+    bash = {
+      enable = true;
+      enableCompletion = true;
+      historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
+      initExtra = ''
+        # eval "$(oh-my-posh init bash)"
+      '';
+      shellAliases = {
+        cd = "z";
+        e = "exit";
+        ga = "git add";
+        gp = "git push";
+        gpu = "git push upstream";
+        gst = "git status";
+        h3 = "helm";
+        k = "kubectl";
+        kubectl = "kubecolor --light-background";
+        ns  = "switch ns";
+        update = "home-manager switch";
+        wp = "watch kubectl get po";
+        ws  = "cd ~/workspace/";
+        ws3 = "cd ~/workspace/k3s";
+        wsa = "cd ~/workspace/ansible";
+        wsh = "cd ~/workspace/homelab";
+      };
+    };
 
     zsh = {
       enable = true;
@@ -93,18 +121,13 @@
         wsh = "cd ~/workspace/homelab";
       };
 
-      plugins = [
-        {
-          name = "powerlevel10k";
-          src = pkgs.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-        }
-        {
-          name = "powerlevel10k-config";
-          src = ./dotfiles;
-          file = "p10k.zsh";
-        }
-      ];
+      # plugins = [
+      #   {
+      #     name = "powerlevel10k-config";
+      #     src = ./dotfiles;
+      #     file = "p10k.zsh";
+      #   }
+      # ];
     };
   };
 }

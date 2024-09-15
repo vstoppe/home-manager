@@ -105,9 +105,11 @@
 
 
   programs.powerline-go = {
-      enable = false;
-      modules = [ "venv" "user" "host" "cwd" "perms" "git" "exit" "root" "kube" ];
+      enable = true;
+      # modules = [ "venv" "user" "host" "cwd" "perms" "git" "exit" "root" "kube" ];
+      modules = [ "venv" "cwd" "perms" "git" "exit" "root" "kube" ];
       settings = { theme = "solarized-dark16"; };
+      newline = true;
   };
 
 
