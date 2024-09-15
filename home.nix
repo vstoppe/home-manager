@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 
 {
@@ -111,11 +111,15 @@
 
 
     # Let Home Manager install and manage itself.
-  programs.git = {
-    enable    = true;
-    #user      = "Volker Stoppe";
+  programs.git = lib.mkIf (config.home.username == "vst") {
+    enable    =  true;
     userEmail = "vst@lindenbox.de";
     userName  = "vstoppe";
+    extraConfig = {
+      user = {
+        user      = "Volker Stoppe";
+      };
+    };
   };
 
   programs.home-manager.enable = true;
