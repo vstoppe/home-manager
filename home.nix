@@ -9,7 +9,7 @@
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "vst";
+  home.username = builtins.getEnv "USER";  #  <== only works with "--impure" switch
   home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}";
   home.sessionPath = [
     "$HOME/bin:$HOME/.rd/bin"
