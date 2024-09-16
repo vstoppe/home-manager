@@ -76,6 +76,8 @@
   # plain files is through 'home.file'.
     file = {
     ".p10k.zsh".source = dotfiles/p10k.zsh;
+    ".config/my-posh-theme.toml".source = dotfiles/my-posh-theme.toml;
+    ".config/my-posh-theme.json".source = dotfiles/my-posh-theme.json;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
@@ -103,14 +105,6 @@
     enable = pkgs.stdenv.isLinux;
   };
 
-
-  programs.powerline-go = {
-      enable = true;
-      # modules = [ "venv" "user" "host" "cwd" "perms" "git" "exit" "root" "kube" ];
-      modules = [ "venv" "cwd" "perms" "git" "exit" "root" "kube" ];
-      settings = { theme = "solarized-dark16"; };
-      newline = true;
-  };
 
 
   # Let Home Manager install and manage itself.

@@ -9,6 +9,11 @@
 
 
   programs = {
+    
+    oh-my-posh = {
+      enable = true;
+      settings = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile "${config.home.homeDirectory}/.config/my-posh-theme.json"));
+    };
 
     dircolors.enable = true;
 
@@ -23,7 +28,6 @@
       ];
     };
 
-
     fzf = {
         enable = true;
     };
@@ -32,7 +36,6 @@
     zoxide = {
       enable = true;
     };
-
 
     bash = {
       enable = true;
@@ -51,6 +54,11 @@
         h3 = "helm";
         k = "kubectl";
         kubectl = "kubecolor --light-background";
+        lD = "eza -lD";
+        lS = "eza -l -ssize";
+        lT = "eza -l -snewest";
+        la = "eza -la";
+        ll = "eza -l";
         ns  = "switch ns";
         update = "home-manager switch";
         wp = "watch kubectl get po";
@@ -61,6 +69,13 @@
       };
     };
 
+    powerline-go = {
+      enable = false;
+      modules = [ "venv" "cwd" "perms" "git" "exit" "root" "kube" ];
+      settings = { theme = "solarized-dark16"; };
+      newline = true;
+    };
+
     zsh = {
       enable = true;
       autocd = true;
@@ -68,11 +83,10 @@
         # configuration framework for zsh
         enable = true;
         caseSensitive = false;
-        prompt = {
-          theme = "powerlevel10k";
-        }; 
+        # prompt = {
+        #   theme = "powerlevel10k";
+        # }; 
       }; 
-
 
       initExtraBeforeCompInit= ''
         ### initialize zinit plugin manager
@@ -92,7 +106,8 @@
         zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --group-directories-first $realpath'  # dir preview
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
         zinit cdreplay -q  # Replay compdefs (to be done after compinit)
-        source ~/.p10k.zsh
+        # source ~/.p10k.zsh
+        # eval "$(oh-my-posh init zsh --config ~/.config/my-posh-theme.toml)"
       '';
 
       # enableAutosuggestions = true; <== outdated with 24.05
@@ -120,14 +135,6 @@
         wsa = "cd ~/workspace/ansible";
         wsh = "cd ~/workspace/homelab";
       };
-
-      # plugins = [
-      #   {
-      #     name = "powerlevel10k-config";
-      #     src = ./dotfiles;
-      #     file = "p10k.zsh";
-      #   }
-      # ];
     };
   };
 }
