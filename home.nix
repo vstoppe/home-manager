@@ -32,6 +32,7 @@
       kubeswitch
       nix # nix-build not found without this pakage, but might break installation of home-manager env
       nix-du
+      toml2json
       p7zip
       yq
       # It is sometimes useful to fine-tune packages, for example, by applying
@@ -78,6 +79,8 @@
     ".p10k.zsh".source = dotfiles/p10k.zsh;
     ".config/my-posh-theme.toml".source = dotfiles/my-posh-theme.toml;
     ".config/my-posh-theme.json".source = dotfiles/my-posh-theme.json;
+    ".config/posh-theme-zen.toml".source = dotfiles/posh-theme-zen.toml;
+    ".config/posh-theme-zen.json".source = dotfiles/posh-theme-zen.json;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
