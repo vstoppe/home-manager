@@ -39,7 +39,7 @@
     };
 
     bash = {
-      enable = true;
+      enable = false;
       enableCompletion = true;
       historyControl = [ "erasedups" "ignoredups" "ignorespace" ];
       initExtra = ''
