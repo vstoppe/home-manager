@@ -59,6 +59,7 @@
 
     plugins = with pkgs.vimPlugins; [
       autoclose-nvim
+      gitsigns-nvim
       gruvbox-nvim # colorscheme
       indent-blankline-nvim
       nightfox-nvim # colorscheme
@@ -77,13 +78,10 @@
 
           -- require('rainbow-delimiters.setup').setup()
           require('autoclose').setup({
-
             keys = {
               -- In Markdown autoclose the backticks is annoying for codeblocks ("```")
               ["`"] = { close = false, disabled_filetypes = { "markdown"} },
             },
-
-
           })
 
           -- setup indent-blankline: add lines to help identify indentions
@@ -94,6 +92,18 @@
 
           -- helps un/commenting lines:
           require('nvim_comment').setup()
+
+          require('gitsigns').setup({
+            on_attach = function(bufnr)
+              local function map(mode, lhs, rhs, opts)
+                  opts = vim.tbl_extend('force', {noremap = true, silent = true}, opts or {})
+                  vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+              end
+
+              map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>")
+              map("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>")
+            end
+          })
       END
 
         colorscheme dawnfox
