@@ -67,6 +67,7 @@
       nvim-surround
       nvim-web-devicons # needed for lualine-nvim
       telescope-nvim
+      vim-flog
       vim-fugitive
       vim-nix
       vim-sort-motion
