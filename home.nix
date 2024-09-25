@@ -5,6 +5,7 @@
   imports = [
     ./neovim.nix
     ./shell.nix
+    ./tmux.nix
   ];
 
   home = {

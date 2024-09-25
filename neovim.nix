@@ -71,6 +71,7 @@
       vim-fugitive
       vim-nix
       vim-sort-motion
+      vim-tmux-navigator
     ];
 
 
