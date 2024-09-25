@@ -39,6 +39,10 @@
         bind-key -T copy-mode-vi v   send-keys -X begin-selection
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
+
+        # enable ssh-agent-forwarding
+        set -g update-environment "SSH_AUTH_SOCK"
+        set-environment -g 'SSH_AUTH_SOCK' ~/.ssh/ssh_auth_sock
       '';
     };
   };
