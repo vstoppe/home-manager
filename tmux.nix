@@ -42,7 +42,6 @@
 
         # enable ssh-agent-forwarding
         set -g update-environment "SSH_AUTH_SOCK"
-        set-environment -g 'SSH_AUTH_SOCK' ~/.ssh/ssh_auth_sock
       '';
     };
   };
