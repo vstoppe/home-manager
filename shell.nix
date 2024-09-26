@@ -30,7 +30,11 @@
     };
 
     fzf = {
-        enable = true;
+      enable = true;
+      tmux = {
+        enableShellIntegration = true;
+        shellIntegrationOptions= [ "-d 40% -p" ];
+      };
     };
 
     ### The better "cd"..
