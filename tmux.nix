@@ -5,9 +5,10 @@
   programs = {
     tmux = {
       enable = true;
-      sensibleOnTop = true;
+      baseIndex = 1;
       mouse = true;
       prefix = "C-Space";
+      sensibleOnTop = true;
       plugins = with pkgs; [
         # tmuxPlugins.power-theme
         # tmuxPlugins.tmux-colors-solarized
@@ -18,12 +19,6 @@
       extraConfig = ''
         # set Terminal to 24Bit color if supported:
         set-option -sa terminal-overrides ",xterm*:Tc"
-
-        # Start windows and panes at 1, no 0
-        set -g base-index 1
-        set -g pane-base-index 1
-        set-window-option -g pane-base-index 1
-        set-option -g renumber-windows on
 
         # Shift Alt vim keys to switch windows
         bind -n M-H previous-window
