@@ -6,7 +6,7 @@
     tmux = {
       enable = true;
       baseIndex = 1;
-      customPaneNavigationAndResize = true;
+      # customPaneNavigationAndResize = true;
       mouse = true;
       prefix = "C-Space";
       sensibleOnTop = true;
@@ -24,6 +24,16 @@
         # Shift Alt vim keys to switch windows
         bind -n M-H previous-window
         bind -n M-L next-window
+
+        # Bind pane navigation o Ctrl+Alt+hjkl
+        unbind -n C-h
+        unbind -n C-j
+        unbind -n C-k
+        unbind -n C-l
+        bind -n C-M-h select-pane -L
+        bind -n C-M-j select-pane -D
+        bind -n C-M-k select-pane -U
+        bind -n C-M-l select-pane -R
 
         # Open panes in current directory
         bind '"' split-window -v -c "#{pane_current_path}"
