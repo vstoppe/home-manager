@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     oh-my-posh
-    zinit # plugin manager
     zsh-fzf-tab
   ];
 
@@ -84,54 +83,40 @@
     zsh = {
       enable = true;
       autocd = true;
-      prezto = {
-        # configuration framework for zsh
-        enable = true;
-        caseSensitive = false;
-        # prompt = {
-        #   theme = "powerlevel10k";
-        # }; 
-      }; 
-
-      initExtraBeforeCompInit= ''
-        ### initialize zinit plugin manager
-        # do "touch $ZINIT[MAN_DIR]/man1/zinit.1" to prevent "/zinit.1: No such file or directory" error
-        declare -A ZINIT
-        declare ZINIT[NO_ALIASES]=1  # do not create aliases for zi or zini / breaks zi (zoxide interactive)
-        source "$HOME/.nix-profile/share/zinit/zinit.zsh"
-        zinit snippet OMZP::eza
-        zinit snippet OMZP::git
-        zinit snippet OMZP::kubectl
-        zinit snippet OMZP::kubectx
-      '';
-
-      initExtra = ''
-        compdef kubecolor=kubectl
-        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-        zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --group-directories-first $realpath'  # dir preview
-        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-        zinit cdreplay -q  # Replay compdefs (to be done after compinit)
-        # source ~/.p10k.zsh
-        # eval "$(oh-my-posh init zsh --config ~/.config/my-posh-theme.toml)"
-      '';
-
-      # enableAutosuggestions = true; <== outdated with 24.05
       autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
+      completionInit = "autoload -U +X compinit && compinit";
+
       history = {
         extended = true;
         ignoreAllDups = true;
         ignoreSpace = true;
       };     historySubstringSearch.enable = true;
+
+      initExtra = ''
+        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+        source <(kubectl completion zsh)
+        compdef kubecolor=kubectl
+        zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --group-directories-first $realpath'  # dir preview
+        zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+      '';
+
       localVariables = {
         PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH";
       };
+
+      prezto = {
+        # configuration framework for zsh
+        enable = true;
+        caseSensitive = false;
+      }; 
+
+      # enableAutosuggestions = true; <== outdated with 24.05
+      syntaxHighlighting.enable = true;
       shellAliases = {
         cd = "z";
         e = "exit";
         h3 = "helm";
-        k = "kubectl";
-        kubectl = "kubecolor --light-background";
+        kubectl = "kubecolor --light-background"; # <= makes problems for auto completion
         ns  = "switch ns";
         update = "home-manager switch";
         wp = "watch kubectl get po";
@@ -139,6 +124,16 @@
         ws3 = "cd ~/workspace/k3s";
         wsa = "cd ~/workspace/ansible";
         wsh = "cd ~/workspace/homelab";
+      };
+
+      zplug = {
+        enable = true;
+        plugins = [
+          { name = "plugins/eza"; tags = [ "from:oh-my-zsh" ]; }
+          { name = "plugins/git"; tags = [ "from:oh-my-zsh" ]; }
+          { name = "plugins/kubectl"; tags = [ "from:oh-my-zsh" ]; }
+          { name = "plugins/kubectx"; tags = [ "from:oh-my-zsh" ]; }
+        ];
       };
     };
   };
