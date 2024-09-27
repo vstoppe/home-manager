@@ -77,7 +77,6 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
     file = {
-    ".p10k.zsh".source = dotfiles/p10k.zsh;
     ".config/my-posh-theme.toml".source = dotfiles/my-posh-theme.toml;
     ".config/my-posh-theme.json".source = dotfiles/my-posh-theme.json;
     ".config/posh-theme-zen.toml".source = dotfiles/posh-theme-zen.toml;
