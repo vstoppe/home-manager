@@ -45,8 +45,8 @@
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y   send-keys -X copy-selection-and-cancel
 
-        # enable ssh-agent-forwarding
-        set -g update-environment "SSH_AUTH_SOCK"
+        # Point $SSH_AUTH_SOCK to a symlinked persistent location:
+        set-environment -g 'SSH_AUTH_SOCK' ~/.ssh/ssh_auth_sock
       '';
     };
   };

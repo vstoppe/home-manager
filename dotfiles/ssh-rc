@@ -1,0 +1,7 @@
+# Every time a client connects to the ssh-server execute this ~/.ssh/rc script.
+# It helps tmux to keep a constant ssh-socket locaton.
+# source: https://werat.dev/blog/happy-ssh-agent-forwarding/
+
+if [ ! -S "$HOME/.ssh/ssh_auth_sock" ] && [ -S "$SSH_AUTH_SOCK" ]; then
+    ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
+fi

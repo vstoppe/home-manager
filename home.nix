@@ -74,6 +74,7 @@
     ".config/my-posh-theme.json".source = dotfiles/my-posh-theme.json;
     ".config/posh-theme-zen.toml".source = dotfiles/posh-theme-zen.toml;
     ".config/posh-theme-zen.json".source = dotfiles/posh-theme-zen.json;
+    ".ssh/rc".source = dotfiles/ssh-rc;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
