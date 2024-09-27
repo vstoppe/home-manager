@@ -10,7 +10,7 @@
       mouse = true;
       prefix = "C-Space";
       sensibleOnTop = true;
-      shell = "${pkgs.zsh}/bin/zsh";
+      # shell = "${pkgs.zsh}/bin/zsh";
       plugins = with pkgs; [
         # tmuxPlugins.power-theme
         # tmuxPlugins.tmux-colors-solarized
