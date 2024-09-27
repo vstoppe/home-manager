@@ -67,13 +67,6 @@
     ] 
     else []);
 
-
-    #programs.git = lib.mkIf (config.home.username == "vst") {
-    # packages = lib.mkIf (config.home.username == "vst") = with pkgs; [
-    #   kubectx
-    # ];
-
-
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
     file = {
@@ -90,13 +83,9 @@
   };
 
 
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
     sessionVariables = {
       # DOCKER_HOST="ssh://root@onyx";
-      EDITOR = "nvim";
       # custom socket for Linux and reuse default socket on Darwin.
       SSH_AUTH_SOCK = if pkgs.stdenv.hostPlatform.isLinux then "\$XDG_RUNTIME_DIR/ssh-agent" else "\$SSH_AUTH_SOCK";   # <= funzt
     };
