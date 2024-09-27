@@ -4,6 +4,7 @@
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       vim-helm #  <== for helm file highlight
+      SchemaStore-nvim  #  <== manage yaml schemata: https://github.com/b0o/SchemaStore.nvim/
     ];
 
     extraConfig = ''
@@ -101,55 +102,98 @@
           }
         }
 
+        local cfg = require("yaml-companion").setup {
+          -- detect k8s schemas based on file content
+          builtin_matchers = {
+            kubernetes = { enabled = true }
+          },
 
-        require('lspconfig').yamlls.setup{
+          -- schemas available in Telescope picker
+          schemas = {
+            -- not loaded automatically, manually select with
+            -- :Telescope yaml_schema
+            {
+              name = "Argo CD Application",
+              uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json"
+            },
+            {
+              name = "Argo Workflows",
+              uri  = "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"
+            },
+            {
+              name = "docker-compose.yml",
+              uri = "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"
 
-          settings = {
-            yaml = {
-              schemaStore = {
-                -- You must disable built-in schemaStore support if you want to use
-                -- this plugin and its advanced options like `ignore`.
-                enable = false,
-                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                url = "",
-              },
-              schemas = require('schemastore').yaml.schemas{
-                -- select subset from the JSON schema catalog
-                select = {
-                  'kustomization.yaml',
-                  'Helm Chart.yaml',
-                  'helmfile',
-                  'docker-compose.yml',
-                },
-                -- additional schemas (not in the catalog)
-                extra = {
-                  url = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
-                  name = 'Argo CD Application',
-                  fileMatch = 'argocd-application.yaml'
-                }, 
-              },
+            },
+            {
+              name = "SealedSecret",
+              uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/bitnami.com/sealedsecret_v1alpha1.json"
+            },
+            -- schemas below are automatically loaded, but added
+            -- them here so that they show up in the statusline
+            {
+              name = "Kustomization",
+              uri = "https://json.schemastore.org/kustomization.json"
+            },
+            {
+              name = "GitHub Workflow",
+              uri = "https://json.schemastore.org/github-workflow.json"
             },
           },
-        }
 
+          lspconfig = {
+            settings = {
+              yaml = {
+                validate = true,
+                schemaStore = {
+                  enable = false,
+                  url = ""
+                },
 
-        -- Here we differentiate yaml from helm files:
-        vim.filetype.add({
-          pattern = {
-            [".*/templates/.*%.yaml"] = "helm",
-          },
-        })
-
-
-        require'lspconfig'.helm_ls.setup{
-          settings = {
-            ['helm-ls'] = {
-              yamlls = {
-                path = "yaml-language-server",
+                -- schemas from store, matched by filename
+                -- loaded automatically
+                schemas = require('schemastore').yaml.schemas {
+                  select = {
+                    -- 'Argo CD Application',
+                    'Argo Workflows',
+                    'Helm Chart.yaml',
+                    -- 'SealedSecret',
+                    'docker-compose.yml',
+                    'helmfile',
+                    'kustomization.yaml',
+                  }
+                }
               }
             }
           }
         }
+
+        require("lspconfig")["yamlls"].setup(cfg)
+        require("telescope").load_extension("yaml_schema")
+
+
+
+
+
+
+
+        -- Here we differentiate yaml from helm files:
+        -- vim.filetype.add({
+        --   pattern = {
+        --     [".*/templates/.*%.yaml"] = "helm",
+        --   },
+        -- })
+
+
+        -- require'lspconfig'.helm_ls.setup{
+        --   settings = {
+        --     ['helm-ls'] = {
+        --       yamlls = {
+        --         path = "yaml-language-server",
+        --       }
+        --     }
+        --   }
+        -- }
 
 
 

@@ -88,7 +88,7 @@
         vim.keymap.set("n", "<leader>k", '<cmd>lua require("kubectl").toggle()<cr>', { noremap = true, silent = true })
 
         --- setup yaml-companion
-        use {
+        use({
           "someone-stole-my-name/yaml-companion.nvim",
           -- requires = {
           --    { "neovim/nvim-lspconfig" },
@@ -98,7 +98,7 @@
           config = function()
             require("telescope").load_extension("yaml_schema")
           end,
-        }
+        })
 
 
 
