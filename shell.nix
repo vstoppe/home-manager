@@ -132,7 +132,6 @@
           { name = "plugins/eza"; tags = [ "from:oh-my-zsh" ]; }
           { name = "plugins/git"; tags = [ "from:oh-my-zsh" ]; }
           { name = "plugins/kubectl"; tags = [ "from:oh-my-zsh" ]; }
-          { name = "plugins/kubectx"; tags = [ "from:oh-my-zsh" ]; }
         ];
       };
     };
