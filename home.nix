@@ -8,6 +8,12 @@
     ./tmux.nix
   ];
 
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
+
+
   home = {
     username = builtins.getEnv "USER";  #  <== only works with "--impure" switch
     homeDirectory = if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}";

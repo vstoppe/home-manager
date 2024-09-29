@@ -15,6 +15,12 @@
         vim.fn.mkdir(parser_install_dir, "p")
         vim.opt.runtimepath:append(parser_install_dir)
 
+        local status_ok, plugin = pcall(require, "nvim-treesitter.configs")
+        if not status_ok then
+          vim.notify("WARNING: nvim-treetitter.configs failed to load")
+          return
+        end
+
         require'nvim-treesitter.configs'.setup {
           -- A list of parser names, or "all" (the five listed parsers should always be installed)
           ensure_installed = { "bash", "dockerfile", "helm", "html", "json", "json5", "lua", "nix", "markdown", "python", "rust", "sql", "vim", "vimdoc", "yaml" },

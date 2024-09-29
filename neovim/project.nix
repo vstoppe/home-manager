@@ -3,7 +3,12 @@
 {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
-      plenary-nvim # just a dependency for neovim-project
+      {
+        plugin = plenary-nvim; # just a dependency for neovim-project
+        config = ''
+          packadd! plenary-nvim
+        '';
+      }
     ];
 
   # All other neovim-project setup resides in packer.nix

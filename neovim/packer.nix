@@ -12,6 +12,7 @@
       lua << END
 
         return require('packer').startup(function(use)
+          use 'wbthomason/packer.nvim' -- this is essential.
 
 
         -- install the indent-tools
