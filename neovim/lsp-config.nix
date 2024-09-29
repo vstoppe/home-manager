@@ -126,6 +126,15 @@
 
             },
             {
+              name = "helmfile",
+              uri = "https://json.schemastore.org/helmfile.json"
+
+            },
+            {
+              name = 'Helm Chart.yaml',
+              uri  = 'https://json.schemastore.org/chart.json'
+            },
+            {
               name = "SealedSecret",
               uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/bitnami.com/sealedsecret_v1alpha1.json"
             },
@@ -152,15 +161,24 @@
 
                 -- schemas from store, matched by filename
                 -- loaded automatically
+                -- catalog: https://github.com/SchemaStore/schemastore/blob/master/src/api/json/catalog.json
                 schemas = require('schemastore').yaml.schemas {
                   select = {
-                    -- 'Argo CD Application',
                     'Argo Workflows',
                     'Helm Chart.yaml',
-                    -- 'SealedSecret',
+                    'Helm Chart.lock',
+                    'helmfile',
+                    'Helm Unittest Test Suite',
                     'docker-compose.yml',
                     'helmfile',
                     'kustomization.yaml',
+                  },
+                  -- additional schemas (not in the catalog)
+                  extra = {
+                    {
+                      url = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
+                      name = 'Argo CD Application',
+                    }
                   }
                 }
               }
