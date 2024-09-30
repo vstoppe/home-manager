@@ -52,6 +52,10 @@
         vim.keymap.set('n', '<leader>ph', '<Cmd>Telescope neovim-project history<CR>', {})
         vim.keymap.set('n', '<leader>rp', '<Cmd>NeovimProjectLoadRecent<CR>', {})
 
+        -- b64: quick base64 encode and decode
+        vim.keymap.set('v', '<leader>be', '<Cmd>B64Encode<CR>', {})
+        vim.keymap.set('v', '<leader>bd', '<Cmd>B64Decode<CR>', {})
+
         -- in insert mode move cursor one char right by pressing <ctrl>f
         vim.keymap.set('i', '<c-f>', '<right>', {})
 

@@ -60,6 +60,7 @@
 
     plugins = with pkgs.vimPlugins; [
       autoclose-nvim
+      b64-nvim
       catppuccin-nvim # colorscheme
       gitsigns-nvim
       gruvbox-nvim # colorscheme
