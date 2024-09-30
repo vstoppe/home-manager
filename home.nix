@@ -37,8 +37,10 @@
       krew
       kubecolor
       kubeswitch
+      lynx
       nix # nix-build not found without this pakage, but might break installation of home-manager env
       nix-du
+      nvimpager
       toml2json
       p7zip
       yq

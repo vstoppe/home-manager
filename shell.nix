@@ -102,6 +102,7 @@
 
       localVariables = {
         PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH";
+        PAGER="nvimpager";
       };
 
       prezto = {

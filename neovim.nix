@@ -61,6 +61,7 @@
       autoclose-nvim
       gitsigns-nvim
       gruvbox-nvim # colorscheme
+      catppuccin-nvim # colorscheme
       indent-blankline-nvim
       nightfox-nvim # colorscheme
       nvim-comment
@@ -108,7 +109,7 @@
           })
       END
 
-        colorscheme dawnfox
+        colorscheme catppuccin-frappe
 
         " Enable syntax highlighting
         syntax enable
