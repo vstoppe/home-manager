@@ -9,6 +9,7 @@
     ./neovim/nvim-tree.nix
     ./neovim/options.nix
     ./neovim/packer.nix
+    ./neovim/neoscroll.nix
     ./neovim/project.nix
     ./neovim/telescope.nix
     ./neovim/treesitter.nix
@@ -59,9 +60,9 @@
 
     plugins = with pkgs.vimPlugins; [
       autoclose-nvim
+      catppuccin-nvim # colorscheme
       gitsigns-nvim
       gruvbox-nvim # colorscheme
-      catppuccin-nvim # colorscheme
       indent-blankline-nvim
       nightfox-nvim # colorscheme
       nvim-comment
