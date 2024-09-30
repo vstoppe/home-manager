@@ -102,6 +102,8 @@
           }
         }
 
+
+        -- more information here: https://www.arthurkoziel.com/json-schemas-in-neovim/
         local cfg = require("yaml-companion").setup {
           -- detect k8s schemas based on file content
           builtin_matchers = {
