@@ -41,8 +41,9 @@
       nix # nix-build not found without this pakage, but might break installation of home-manager env
       nix-du
       nvimpager
-      toml2json
       p7zip
+      toml2json
+      wezterm
       yq
       # It is sometimes useful to fine-tune packages, for example, by applying
       # overrides. You can do that directly here, just don't forget the
