@@ -3,7 +3,7 @@
 {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
-      vim-helm #  <== for helm file highlight
+      vim-helm #  <== for helm file detection highlight
       SchemaStore-nvim  #  <== manage yaml schemata: https://github.com/b0o/SchemaStore.nvim/
     ];
 
@@ -190,31 +190,24 @@
         require("telescope").load_extension("yaml_schema")
 
 
-
-
-
-
-
         -- Here we differentiate yaml from helm files:
-        -- vim.filetype.add({
-        --   pattern = {
-        --     [".*/templates/.*%.yaml"] = "helm",
-        --   },
-        -- })
+        vim.filetype.add({
+          pattern = {
+            [".*/templates/.*%.yaml"] = "helm",
+          },
+        })
 
-
-        -- require'lspconfig'.helm_ls.setup{
-        --   settings = {
-        --     ['helm-ls'] = {
-        --       yamlls = {
-        --         path = "yaml-language-server",
-        --       }
-        --     }
-        --   }
-        -- }
-
-
-
+        require'lspconfig'.helm_ls.setup{
+          settings = {
+            ['helm-ls'] = {
+              yamlls = {
+                -- activated yamlls leads to more false errors 
+                enabled = true;
+                path = "yaml-language-server",
+              }
+            }
+          }
+        }
 
       END
       '';
