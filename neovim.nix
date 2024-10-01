@@ -109,6 +109,11 @@
               map("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>")
             end
           })
+
+          -- colorscheme settings
+          require("catppuccin").setup({
+            transparent_background = true,
+          })
       END
 
         colorscheme catppuccin-frappe
