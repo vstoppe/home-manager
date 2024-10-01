@@ -5,6 +5,8 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 local act    = wezterm.action
 
+-- SSH settings:
+config.ssh_backend = "Ssh2"
 
 -- This is where you actually apply your config choices
 
@@ -29,6 +31,7 @@ config.ssh_domains = {
     multiplexing = 'WezTerm',
   }
 }
+
 
 
 
