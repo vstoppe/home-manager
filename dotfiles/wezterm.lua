@@ -31,6 +31,11 @@ config.ssh_domains = {
     remote_address = 'crimson',
     username = 'vst',
     multiplexing = 'WezTerm',
+  },
+  {
+    name = 'itu',
+    remote_address = '10.139.31.66',
+    multiplexing = 'WezTerm'
   }
 }
 
