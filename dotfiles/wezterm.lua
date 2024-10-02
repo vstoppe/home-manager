@@ -15,6 +15,8 @@ config.use_dead_keys = false
 -- How many lines of scrollback you want to retain per tab
 config.scrollback_lines = 10000
 
+config.audible_bell = "Disabled"
+
 
 
 -- For example, changing the color scheme:
