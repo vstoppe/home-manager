@@ -10,24 +10,18 @@ local act    = wezterm.action
 config.ssh_backend = "LibSsh" -- <= works on mac
 
 
--- Configure initial window size:
 config.initial_cols = 160;
 config.initial_rows = 40;
 
--- This is where you actually apply your config choices
 
--- Disable to prevent problems with CLI apss.
 config.use_dead_keys = false
--- How many lines of scrollback you want to retain per tab
 config.scrollback_lines = 10000
 
 config.audible_bell = "Disabled"
 
 
 
--- For example, changing the color scheme:
 config.color_scheme = 'catppuccin-frappe'
--- config.font = wezterm.font 'mononoki Nerd Font Mono'
 config.font_size = 16
 config.window_background_opacity = 0.96
 
@@ -46,12 +40,14 @@ config.ssh_domains = {
 }
 
 
+-- more modern style for taskbar
+config.use_fancy_tab_bar = true;
+
 
 
 -- Hide the tab bar if there is only one tab
 config.hide_tab_bar_if_only_one_tab = true
 -- Makes tabs less fancy and take less space
-config.use_fancy_tab_bar = false
 
 -- Disable default shortcuts.
 config.disable_default_key_bindings = true
