@@ -6,7 +6,13 @@ local config = wezterm.config_builder()
 local act    = wezterm.action
 
 -- SSH settings:
-config.ssh_backend = "Ssh2"
+-- config.ssh_backend = "Ssh2" -- ssh2 dos not support request_auth_agent_forwarding
+config.ssh_backend = "LibSsh" -- <= works on mac
+
+
+-- Configure initial window size:
+config.initial_cols = 160;
+config.initial_rows = 40;
 
 -- This is where you actually apply your config choices
 
