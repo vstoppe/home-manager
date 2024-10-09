@@ -97,14 +97,14 @@
     sessionVariables = {
       # DOCKER_HOST="ssh://root@onyx";
       # custom socket for Linux and reuse default socket on Darwin.
-      SSH_AUTH_SOCK = if pkgs.stdenv.hostPlatform.isLinux then "\$XDG_RUNTIME_DIR/ssh-agent" else "\$SSH_AUTH_SOCK";   # <= funzt
+      # SSH_AUTH_SOCK = if pkgs.stdenv.hostPlatform.isLinux then "\$XDG_RUNTIME_DIR/ssh-agent" else "\$SSH_AUTH_SOCK";   # <= funzt
     };
   };
 
 
   services.ssh-agent = {
-    # ifLinux enable => true
-    enable = pkgs.stdenv.isLinux;
+    # enable = pkgs.stdenv.isLinux;
+    enable = false;
   };
 
 
