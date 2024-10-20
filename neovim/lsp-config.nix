@@ -123,6 +123,10 @@
               uri  = "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"
             },
             {
+              name = "ca-cert clusterissuer",
+              uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/cert-manager.io/clusterissuer_v1.json"
+            },
+            {
               name = "docker-compose.yml",
               uri = "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"
 
@@ -180,6 +184,10 @@
                     {
                       url = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
                       name = 'Argo CD Application',
+                    },
+                    {
+                      name = "ca-cert clusterissuer",
+                      uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/cert-manager.io/clusterissuer_v1.json"
                     }
                   }
                 }

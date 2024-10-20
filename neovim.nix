@@ -120,6 +120,7 @@
 
         " Enable syntax highlighting
         syntax enable
+        set nowrap
     '';
   };
 }
