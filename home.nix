@@ -110,7 +110,8 @@
 
 
   # Let Home Manager install and manage itself.
-  programs.git = lib.mkIf (config.home.username == "vst") {
+  programs = {
+    git = lib.mkIf (config.home.username == "vst") {
     enable    =  true;
     userEmail = "vst@lindenbox.de";
     userName  = "vstoppe";
@@ -120,7 +121,14 @@
       };
     };
   };
+    
+  home-manager.enable = true;
 
-  programs.home-manager.enable = true;
+  };
+
+
+
+
+
 }
 
