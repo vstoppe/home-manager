@@ -99,6 +99,7 @@
       # custom socket for Linux and reuse default socket on Darwin.
       # SSH_AUTH_SOCK = if pkgs.stdenv.hostPlatform.isLinux then "\$XDG_RUNTIME_DIR/ssh-agent" else "\$SSH_AUTH_SOCK";   # <= funzt
       KUSTOMIZE_PLUGIN_HOME = "$HOME/.kustomize/plugins";
+      XDG_CONFIG_HOME = "$HOME/.config";
     };
   };
 
