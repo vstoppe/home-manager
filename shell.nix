@@ -101,7 +101,7 @@
       '';
 
       localVariables = {
-        PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH";
+        PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH:$HOME/.garden/bin";
         PAGER="nvimpager";
       };
 
