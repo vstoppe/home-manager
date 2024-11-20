@@ -5,10 +5,10 @@
   programs = {
     tmux = {
       enable = true;
-      baseIndex = 1;
       # customPaneNavigationAndResize = true;
       mouse = true;
-      prefix = "C-Space";
+      # prefix = "C-Space";
+      # baseIndex = 1;
       sensibleOnTop = true;
       # shell = "${pkgs.zsh}/bin/zsh";
       plugins = with pkgs; [
