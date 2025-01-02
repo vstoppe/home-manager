@@ -20,7 +20,7 @@
     ### The better "ls"
     eza = {
       enable = true;
-      icons = true;
+      icons = "auto";
       git = true;
       extraOptions = [
         "--group-directories-first"
@@ -98,6 +98,7 @@
         compdef kubecolor=kubectl
         zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --group-directories-first $realpath'  # dir preview
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+        zstyle ':omz:plugins:iterm2 shell-integration yes'
       '';
 
       localVariables = {
@@ -133,6 +134,7 @@
           { name = "plugins/eza"; tags = [ "from:oh-my-zsh" ]; }
           { name = "plugins/git"; tags = [ "from:oh-my-zsh" ]; }
           { name = "plugins/kubectl"; tags = [ "from:oh-my-zsh" ]; }
+          { name = "plugins/iterm2"; tags = [ "from:oh-my-zsh" ]; }
         ];
       };
     };
