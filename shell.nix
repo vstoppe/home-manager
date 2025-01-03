@@ -57,7 +57,6 @@
         gst = "git status";
         h3 = "helm";
         k = "kubectl";
-        kubectl = "kubecolor --light-background";
         lD = "eza -lD";
         lS = "eza -l -ssize";
         lT = "eza -l -snewest";
@@ -71,6 +70,11 @@
         wsa = "cd ~/workspace/ansible";
         wsh = "cd ~/workspace/homelab";
       };
+    };
+
+    kubecolor = {
+      enable = true;
+      enableAlias = true;
     };
 
     powerline-go = {
@@ -95,10 +99,9 @@
       initExtra = ''
         source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         source <(kubectl completion zsh)
-        compdef kubecolor=kubectl
         zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --group-directories-first $realpath'  # dir preview
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-        zstyle ':omz:plugins:iterm2 shell-integration yes'
+        #zstyle ':omz:plugins:iterm2 shell-integration yes'
       '';
 
       localVariables = {
@@ -118,7 +121,6 @@
         cd = "z";
         e = "exit";
         h3 = "helm";
-        kubectl = "kubecolor --light-background"; # <= makes problems for auto completion
         ns  = "switch ns";
         update = "home-manager switch";
         wp = "watch kubectl get po";

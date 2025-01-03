@@ -35,7 +35,6 @@
       jq
       k9s
       krew
-      kubecolor
       kubeswitch
       lynx
       nix # nix-build not found without this pakage, but might break installation of home-manager env
