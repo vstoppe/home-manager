@@ -99,6 +99,7 @@
       initExtra = ''
         source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         source <(kubectl completion zsh)
+        compdef kubecolor=kubectl
         zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --group-directories-first $realpath'  # dir preview
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
         #zstyle ':omz:plugins:iterm2 shell-integration yes'
