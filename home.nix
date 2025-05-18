@@ -67,6 +67,7 @@
       postgresql_15
       rsync
       rustc
+      smartmontools
       unixtools.watch
       wakeonlan
       wget
