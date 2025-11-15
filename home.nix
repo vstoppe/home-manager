@@ -21,7 +21,7 @@
       "$HOME/bin:$HOME/.rd/bin"
     ];
 
-    stateVersion = "24.05"; # Please read the comment before changing.
+    stateVersion = "25.05"; # Please read the comment before changing.
 
     ### common packages 
     packages = with pkgs; [
