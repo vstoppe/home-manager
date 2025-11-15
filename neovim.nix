@@ -6,6 +6,7 @@
     ./neovim/keymaps.nix
     ./neovim/lsp-config.nix
     ./neovim/lualine.nix
+    ./neovim/neogit.nix
     ./neovim/nvim-tree.nix
     ./neovim/options.nix
     ./neovim/packer.nix
@@ -65,6 +66,7 @@
       gitsigns-nvim
       gruvbox-nvim # colorscheme
       indent-blankline-nvim
+      neogit
       nightfox-nvim # colorscheme
       nvim-comment
       nvim-surround
