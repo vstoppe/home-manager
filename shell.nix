@@ -12,7 +12,7 @@
     oh-my-posh = {
       enable = true;
       # settings = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile "${config.home.homeDirectory}/.config/my-posh-theme.json"));
-      settings = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile "${config.home.homeDirectory}/.config/posh-theme-zen.json"));
+      settings = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile "${config.home.homeDirectory}/.config/home-manager/dotfiles/posh-theme-zen.json"));
     };
 
     dircolors.enable = true;
