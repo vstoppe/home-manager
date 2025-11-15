@@ -17,7 +17,7 @@
 
   home.packages = with pkgs; [
 
-    nodejs_18  # neovim / ls dependency
+    nodejs_20  # neovim / ls dependency
     helm-ls    # helm-language-server binary
     ripgrep    # neovim / telescope dependency
     shellcheck # neovim / lsp depencency
