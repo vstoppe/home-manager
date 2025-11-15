@@ -61,14 +61,20 @@
       kubectx
       kubernetes-helm
       kustomize
+      libdvdcss
+      libdvdread
+      minikube
       netdiscover
       nmap
       operator-sdk # manage operator lifecycle manager
+      podman
+      podman-remote
       postgresql_15
       rsync
       rustc
       smartmontools
       unixtools.watch
+      vobcopy
       wakeonlan
       wget
       zsh
