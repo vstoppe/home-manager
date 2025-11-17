@@ -37,7 +37,7 @@
           }
         }
 
-        require("telescope").load_extension("telescope-yaml")
+        -- require("telescope").load_extension("telescope-yaml")
 
 
       END

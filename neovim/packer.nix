@@ -16,8 +16,10 @@
 
 
 
-
-        use { "dapc11/telescope-yaml.nvim" }
+        --use { 
+        --  "dapc11/telescope-yaml.nvim",
+        --  requires = { "dapc11/telescope-yaml.nvim" }
+        --}
 
         use {
           "cuducos/yaml.nvim",
