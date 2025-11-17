@@ -67,11 +67,14 @@
       gruvbox-nvim # colorscheme
       indent-blankline-nvim
       indent-tools-nvim
+      mini-icons # support for render-markdown
+      mini-nvim  # support for render-markdown
       neogit
       nightfox-nvim # colorscheme
       nvim-comment
       nvim-surround
       nvim-web-devicons # needed for lualine-nvim
+      render-markdown-nvim
       telescope-nvim
       vim-flog
       vim-fugitive

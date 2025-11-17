@@ -44,6 +44,9 @@
         vim.keymap.set('n', '<leader>gs', '<Cmd>Telescope yaml_schema<CR>', {})
         vim.keymap.set('n', '<leader>yt', ':YAMLTelescope<CR>', { noremap = false })
 
+        -- Terminal
+        vim.keymap.set('t', '<Esc>', '<c-\\><c-n>', {})
+
         -- nvim-tree --
         vim.opt.termguicolors = true
         local nvimtree = require("nvim-tree.api")
