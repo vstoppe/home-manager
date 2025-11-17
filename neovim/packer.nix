@@ -15,18 +15,7 @@
           use 'wbthomason/packer.nvim' -- this is essential.
 
 
-        -- install the indent-tools
 
-        use({
-          "arsham/indent-tools.nvim",
-          requires = {
-            "arsham/arshlib.nvim",
-            "nvim-treesitter/nvim-treesitter-textobjects",
-          },
-          config = function()
-            require("indent-tools").config({})
-          end,
-        })
 
         use { "dapc11/telescope-yaml.nvim" }
 

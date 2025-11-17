@@ -66,6 +66,7 @@
       gitsigns-nvim
       gruvbox-nvim # colorscheme
       indent-blankline-nvim
+      indent-tools-nvim
       neogit
       nightfox-nvim # colorscheme
       nvim-comment
