@@ -72,7 +72,7 @@
       rsync
       rustc
       smartmontools
-      talosctl
+      # talosctl
       unixtools.watch
       vobcopy
       wakeonlan
