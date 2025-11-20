@@ -63,6 +63,7 @@
       autoclose-nvim
       b64-nvim
       catppuccin-nvim # colorscheme
+      diffview-nvim # neogit dep for viewing diffs
       gitsigns-nvim
       gruvbox-nvim # colorscheme
       indent-blankline-nvim
