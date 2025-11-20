@@ -42,10 +42,6 @@
         vim.keymap.set('v', '<', '<gv', opts)
         vim.keymap.set('v', '>', '>gv', opts)
 
-        -----------------
-        vim.keymap.set("n", "<leader>fy", "<cmd>YAMLTelescope<CR>")
-
-
       END
       '';
   };
