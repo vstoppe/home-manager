@@ -21,7 +21,7 @@
       "$HOME/bin:$HOME/.rd/bin"
     ];
 
-    stateVersion = "25.05"; # Please read the comment before changing.
+    stateVersion = "25.11"; # Please read the comment before changing.
 
     ### common packages 
     packages = with pkgs; [
@@ -121,13 +121,13 @@
   programs = {
     git = lib.mkIf (config.home.username == "vst") {
     enable    =  true;
-    userEmail = "vst@lindenbox.de";
-    userName  = "vstoppe";
-    extraConfig = {
-      user = {
-        user      = "Volker Stoppe";
+    settings = {
+        user = {
+          name = "vstoppe";
+          email = "vst@lindenbox.de";
+          user  = "Volker Stoppe";
+        };
       };
-    };
   };
 
   bat = {
