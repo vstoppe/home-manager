@@ -128,7 +128,7 @@
           user  = "Volker Stoppe";
         };
       };
-  };
+    };
 
   bat = {
     enable = true;
