@@ -9,6 +9,19 @@
 
     extraLuaConfig = ''
 
+        -- Symbols for lsp.diagnostics
+        local severity = vim.diagnostic.severity
+        vim.diagnostic.config({
+          signs = {
+            text = {
+              [severity.ERROR] = " ",
+              [severity.WARN] = " ",
+              [severity.HINT] = "󰠠 ",
+              [severity.INFO] = " ",
+            },
+          },
+        })
+
         -- Set different settings for different languages' LSP
         -- LSP list: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
         -- How to use setup({}): https://github.com/neovim/nvim-lspconfig/wiki/Understanding-setup-%7B%7D
