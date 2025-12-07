@@ -215,11 +215,11 @@
 
 
         -- Here we differentiate yaml from helm files:
-        -- vim.filetype.add({
-        --   pattern = {
-        --     [".*/templates/.*%.yaml"] = "helm",
-        --   },
-        -- })
+        vim.filetype.add({
+          pattern = {
+            [".*/templates/.*%.yaml"] = "helm",
+          },
+        })
 
 
         vim.lsp.config('bashls', {
