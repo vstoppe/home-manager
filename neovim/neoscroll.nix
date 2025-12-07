@@ -6,8 +6,7 @@
       neoscroll-nvim
     ];
 
-    extraConfig = ''
-      lua << END
+    extraLuaConfig = ''
         require('neoscroll').setup({
           mappings = {                 -- Keys to be mapped to their corresponding default scrolling animation
             '<C-u>', '<C-d>',
@@ -27,7 +26,7 @@
               'WinScrolled', 'CursorMoved'
           },
         })
-      END
+
       '';
   };
 }

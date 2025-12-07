@@ -2,9 +2,7 @@
 
 {
   programs.neovim = {
-    extraConfig = ''
-      lua << END
-
+    extraLuaConfig = ''
         require('telescope').setup{
           defaults = {
             -- Default configuration for telescope goes here:
@@ -39,8 +37,6 @@
 
         -- require("telescope").load_extension("telescope-yaml")
 
-
-      END
       '';
   };
 }

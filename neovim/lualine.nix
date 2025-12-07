@@ -6,8 +6,7 @@
       lualine-nvim
     ];
 
-    extraConfig = ''
-      lua << END
+    extraLuaConfig = ''
 
         local function get_schema()
           local schema = require("yaml-companion").get_buf_schema(0)
@@ -58,7 +57,6 @@
           inactive_winbar = {},
           extensions = {}
         }
-      END
       '';
   };
 }

@@ -85,9 +85,7 @@
     ];
 
 
-    extraConfig = ''
-      lua << END
-
+    extraLuaConfig = ''
           -- require('rainbow-delimiters.setup').setup()
           require('autoclose').setup({
             keys = {
@@ -121,8 +119,10 @@
           require("catppuccin").setup({
             transparent_background = true,
           })
-      END
 
+    '';
+
+    extraConfig = ''
         colorscheme catppuccin-frappe
 
         " Enable syntax highlighting

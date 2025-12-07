@@ -9,14 +9,10 @@
 
   # All other neovim-project setup resides in packer.nix
   # due to lack of nix-packages.
-    extraConfig = ''
-      lua << END
-
+    extraLuaConfig = ''
         require('animation').setup()
         require('windows').setup()
 
-
-      END
       '';
 
   };

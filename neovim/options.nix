@@ -3,8 +3,7 @@
 {
   programs.neovim = {
 
-    extraConfig = ''
-      lua << END
+    extraLuaConfig = ''
 
         -- Set leader key to space
         vim.g.mapleader = ' '
@@ -66,7 +65,6 @@
         vim.keymap.set("n", "<leader>k", '<cmd>lua require("kubectl").toggle()<cr>', { noremap = true, silent = true })
         vim.keymap.set("n", "<leader>ka", '<cmd>:w<cr>:Kubectl apply<cr>', { noremap = true, silent = true })
 
-      END
       '';
   };
 }

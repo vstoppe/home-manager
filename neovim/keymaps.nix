@@ -2,10 +2,7 @@
 
 {
   programs.neovim = {
-
-    extraConfig = ''
-      lua << END
-        
+    extraLuaConfig = ''
         -- define common options
         local opts = {
             noremap = true,      -- non-recursive
@@ -42,7 +39,6 @@
         vim.keymap.set('v', '<', '<gv', opts)
         vim.keymap.set('v', '>', '>gv', opts)
 
-      END
       '';
   };
 }

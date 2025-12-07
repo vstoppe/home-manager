@@ -6,8 +6,7 @@
       nvim-tree-lua
     ];
 
-    extraConfig = ''
-      lua << END
+    extraLuaConfig = ''
         require("nvim-tree").setup({
           sync_root_with_cwd = true, --- root needs to be synced for nvim-project
           disable_netrw = true,
@@ -61,7 +60,7 @@
         vim.opt.termguicolors = true
         local nvimtree = require("nvim-tree.api")
         vim.keymap.set('n', '<leader>tt', nvimtree.tree.toggle, {})
-      END
+
       '';
   };
 }
