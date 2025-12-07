@@ -7,8 +7,7 @@
       SchemaStore-nvim  #  <== manage yaml schemata: https://github.com/b0o/SchemaStore.nvim/
     ];
 
-    extraConfig = ''
-      lua << END
+    extraLuaConfig = ''
 
         -- Set different settings for different languages' LSP
         -- LSP list: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
@@ -27,7 +26,7 @@
 
         -- Use an on_attach function to only map the following keys
         -- after the language server attaches to the current buffer
-        local on_attach = function(client, bufnr)
+        local lsp_keymappings = function(client, bufnr)
             -- Enable completion triggered by <c-x><c-o>
             vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -50,61 +49,10 @@
             vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
         end
 
-        -- Setup the language servers
-        lspconfig.pylsp.setup(
-          { 
-            on_attach = on_attach, 
-              settings = {
-                pylsp = {
-                  configurationSources = "pycodestyle",
-                  plugins = {
-                    jedi_completion = {
-                      enabled = true,
-                      include_class_objects = true,
-                      include_function_objects = true,
-                      fuzzy = true,
-                      eager = true,
-                    },
-                    pylint = {
-                      enabled = false
-                    },
-                    flake8 = {
-                      enabled = false
-                    },
-                    pyls_mypy = {
-                      enabled = true,
-                      --live_mode = true,
-                    },
-                    rope_autoimport = {
-                      enabled = true,
-                      memory = true,
-                    },
-                    rope_completion = {
-                      enabled = true,
-                    }
-
-                  }
-                }
-              }
-          }
-        )
-        require('lspconfig').bashls.setup{}
-        require('lspconfig').lua_ls.setup {}
-        require('lspconfig').nil_ls.setup {}
-        require('lspconfig').vimls.setup{}
-        require('lspconfig').rust_analyzer.setup{
-          settings = {
-            ['rust-analyzer'] = {
-              diagnostics = {
-                enable = true;
-              }
-            }
-          }
-        }
 
 
         -- more information here: https://www.arthurkoziel.com/json-schemas-in-neovim/
-        local cfg = require("yaml-companion").setup {
+        local yamlls_cfg = require("yaml-companion").setup {
           -- detect k8s schemas based on file content
           builtin_matchers = {
             kubernetes = { enabled = true }
@@ -156,6 +104,7 @@
             },
           },
 
+
           lspconfig = {
             settings = {
               yaml = {
@@ -196,8 +145,59 @@
           }
         }
 
-        require("lspconfig")["yamlls"].setup(cfg)
-        require("telescope").load_extension("yaml_schema")
+        -- Setup the language servers
+
+        vim.lsp.config('pylsp', {
+          cmd = { 'pylsp' },
+          on_attach = lsp_keymappings,
+          filetypes = { 'python' },
+          settings = {
+            pylsp = {
+              configurationSources = "pycodestyle",
+              plugins = {
+                jedi_completion = {
+                  enabled = true,
+                  include_class_objects = true,
+                  include_function_objects = true,
+                  fuzzy = true,
+                  eager = true,
+                },
+                pylint = {
+                  enabled = false
+                },
+                flake8 = {
+                  enabled = false
+                },
+                pyls_mypy = {
+                  enabled = true,
+                  --live_mode = true,
+                },
+                rope_autoimport = {
+                  enabled = true,
+                  memory = true,
+                },
+                rope_completion = {
+                  enabled = true,
+                }
+              }
+            },
+          },
+        })
+
+        
+        vim.lsp.config('rust_analyzer', {
+          -- Server-specific settings. See `:help lsp-quickstart`
+          on_attach = lsp_keymappings,
+          cmd = {'rust-analyzer'},
+          filetypes = { 'rust' },
+          settings = {
+            ['rust-analyzer'] = {
+              diagnostics = {
+                enable = true;
+              }
+            },
+          },
+        })
 
 
         -- Here we differentiate yaml from helm files:
@@ -207,7 +207,14 @@
           },
         })
 
-        require'lspconfig'.helm_ls.setup{
+
+        vim.lsp.config('bashls', {
+          on_attach = lsp_keymappings,
+          filetypes = { 'bash'},
+        })
+
+        
+        vim.lsp.config('helm_ls', {
           settings = {
             ['helm-ls'] = {
               yamlls = {
@@ -217,9 +224,25 @@
               }
             }
           }
-        }
+        })
 
-      END
+
+        vim.lsp.config('yamlls', {
+          on_attach = yamlls_cfg,
+        })
+
+
+        require("telescope").load_extension("yaml_schema")
+        
+        vim.lsp.enable('bashls')
+        vim.lsp.enable('lua_ls')
+        vim.lsp.enable('nil_ls')
+        vim.lsp.enable('pylsp')
+        vim.lsp.enable('helm_ls')
+        vim.lsp.enable('rust_analyzer')
+        vim.lsp.enable('vimls')
+        vim.lsp.enable('yamlls')
+
       '';
   };
 }
