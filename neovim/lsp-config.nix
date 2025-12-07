@@ -5,6 +5,7 @@
     plugins = with pkgs.vimPlugins; [
       vim-helm #  <== for helm file detection highlight
       SchemaStore-nvim  #  <== manage yaml schemata: https://github.com/b0o/SchemaStore.nvim/
+      yaml-companion-nvim
     ];
 
     extraLuaConfig = ''
@@ -214,11 +215,11 @@
 
 
         -- Here we differentiate yaml from helm files:
-        vim.filetype.add({
-          pattern = {
-            [".*/templates/.*%.yaml"] = "helm",
-          },
-        })
+        -- vim.filetype.add({
+        --   pattern = {
+        --     [".*/templates/.*%.yaml"] = "helm",
+        --   },
+        -- })
 
 
         vim.lsp.config('bashls', {
