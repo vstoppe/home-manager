@@ -11,7 +11,6 @@
     ./neovim/options.nix
     ./neovim/packer.nix
     ./neovim/neoscroll.nix
-    ./neovim/project.nix
     ./neovim/telescope.nix
     ./neovim/treesitter.nix
   ];
@@ -75,6 +74,7 @@
       nvim-comment
       nvim-surround
       nvim-web-devicons # needed for lualine-nvim
+      plenary-nvim # a dependency for neovim-project
       render-markdown-nvim
       telescope-nvim
       vim-flog
