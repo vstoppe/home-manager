@@ -70,6 +70,7 @@
       podman
       postgresql_15
       rsync
+      rust-analyzer # rust-language-server
       rustc
       smartmontools
       # talosctl
