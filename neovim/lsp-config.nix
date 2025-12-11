@@ -5,10 +5,16 @@
     plugins = with pkgs.vimPlugins; [
       vim-helm #  <== for helm file detection highlight
       SchemaStore-nvim  #  <== manage yaml schemata: https://github.com/b0o/SchemaStore.nvim/
-      yaml-companion-nvim
+      # yaml-companion-nvim # <== abandoned
+      schema-companion-nvim # <== fork of yaml-companion
     ];
 
     extraLuaConfig = ''
+
+      -- https://github.com/cenk1cenk2/schema-companion.nvim
+      require("schema-companion").setup({
+        log_level = vim.log.levels.INFO,
+      })
 
         -- Symbols for lsp.diagnostics
         local severity = vim.diagnostic.severity
@@ -76,46 +82,6 @@
           schemas = {
             -- not loaded automatically, manually select with
             -- :Telescope yaml_schema
-            {
-              name = "Argo CD Application",
-              uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json"
-            },
-            {
-              name = "Argo Workflows",
-              uri  = "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"
-            },
-            {
-              name = "ca-cert clusterissuer",
-              uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/cert-manager.io/clusterissuer_v1.json"
-            },
-            {
-              name = "docker-compose.yml",
-              uri = "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"
-
-            },
-            {
-              name = "helmfile",
-              uri = "https://json.schemastore.org/helmfile.json"
-
-            },
-            {
-              name = 'Helm Chart.yaml',
-              uri  = 'https://json.schemastore.org/chart.json'
-            },
-            {
-              name = "SealedSecret",
-              uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/bitnami.com/sealedsecret_v1alpha1.json"
-            },
-            -- schemas below are automatically loaded, but added
-            -- them here so that they show up in the statusline
-            {
-              name = "Kustomization",
-              uri = "https://json.schemastore.org/kustomization.json"
-            },
-            {
-              name = "GitHub Workflow",
-              uri = "https://json.schemastore.org/github-workflow.json"
-            },
           },
 
 
@@ -227,6 +193,10 @@
           filetypes = { 'bash'},
         })
 
+        vim.lsp.config('yamlls', {
+          on_attach = lsp_keymappings,
+          filetypes = { 'yaml'},
+        })
         
         vim.lsp.config('helm_ls', {
           settings = {
@@ -241,9 +211,63 @@
         })
 
 
-        vim.lsp.config('yamlls', {
-          on_attach = yamlls_cfg,
-        })
+        
+        require("schema-companion").setup_client(
+          require("schema-companion").adapters.yamlls.setup({
+              sources = {
+                -- your sources for the language server
+                require("schema-companion").sources.matchers.kubernetes.setup({ version = "master" }),
+                require("schema-companion").sources.lsp.setup(),
+                require("schema-companion").sources.schemas.setup({
+                  {
+                    name = "Kubernetes master",
+                    uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json",
+                    },
+                    {
+                      name = "Argo CD Application",
+                      uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json"
+                    },
+                    {
+                      name = "Argo Workflows",
+                      uri  = "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"
+                    },
+                    {
+                      name = "docker-compose.yml",
+                      uri = "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"
+
+                    },
+                    {
+                      name = "helmfile",
+                      uri = "https://json.schemastore.org/helmfile.json"
+
+                    },
+                    {
+                      name = 'Helm Chart.yaml',
+                      uri  = 'https://json.schemastore.org/chart.json'
+                    },
+                    {
+                      name = "SealedSecret",
+                      uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/bitnami.com/sealedsecret_v1alpha1.json"
+                    },
+                    -- schemas below are automatically loaded, but added
+                    -- them here so that they show up in the statusline
+                    {
+                      name = "Kustomization",
+                      uri = "https://json.schemastore.org/kustomization.json"
+                    },
+                    {
+                      name = "GitHub Workflow",
+                      uri = "https://json.schemastore.org/github-workflow.json"
+                    },
+                      }),
+                    },
+            }),
+            {
+              vim.lsp.enable('yamlls')
+            }
+        )
+
+
 
 
         require("telescope").load_extension("yaml_schema")
@@ -255,7 +279,6 @@
         vim.lsp.enable('helm_ls')
         vim.lsp.enable('rust_analyzer')
         vim.lsp.enable('vimls')
-        vim.lsp.enable('yamlls')
 
       '';
   };
