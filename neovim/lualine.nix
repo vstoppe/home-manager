@@ -9,9 +9,10 @@
     extraLuaConfig = ''
 
         local function get_schema()
-          local schema = require("yaml-companion").get_buf_schema(0)
+          local schema = require("schema-companion").get_current_schemas()
+          -- print(schema)
           if schema.result[1].name == "none" then
-            return ""
+            return "noschema"
           end
           return schema.result[1].name
         end
@@ -39,7 +40,8 @@
             lualine_a = {'mode'},
             lualine_b = {'branch', 'diff', 'diagnostics'},
             lualine_c = {'filename'},
-            lualine_x = {'encoding', 'fileformat', 'filetype', get_schema},
+            lualine_x = {'encoding', 'fileformat', 'filetype', 'get_schema'},
+            -- lualine_x = {'encoding', 'fileformat', 'filetype', get_schema},
             -- lualine_x = {'encoding', 'fileformat', 'filetype'},
             lualine_y = {'progress'},
             lualine_z = {'location'}
@@ -48,7 +50,7 @@
             lualine_a = {},
             lualine_b = {},
             lualine_c = {'filename'},
-            lualine_x = {'location'},
+            -- lualine_x = {'location'},
             lualine_y = {},
             lualine_z = {}
           },

@@ -22,6 +22,8 @@
     ripgrep    # neovim / telescope dependency
     shellcheck # neovim / lsp depencency
     xsel       # neovim dep
+    yaml-language-server
+
     (pkgs.python311.withPackages (ppkgs: with ppkgs; [
       # some neovim python plugins search for dependencies here, not programs.neovim.extraPython3Packages!!!
       autopep8 # <== kick in auto-lintng with pylsp

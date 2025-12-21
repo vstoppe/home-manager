@@ -3,10 +3,9 @@
 {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
-      vim-helm #  <== for helm file detection highlight
       SchemaStore-nvim  #  <== manage yaml schemata: https://github.com/b0o/SchemaStore.nvim/
-      # yaml-companion-nvim # <== abandoned
       schema-companion-nvim # <== fork of yaml-companion
+      helm-ls-nvim # <== helm ft detection, alternative to vim-helm
     ];
 
     extraLuaConfig = ''
@@ -70,61 +69,6 @@
       end
 
 
-
-      -- more information here: https://www.arthurkoziel.com/json-schemas-in-neovim/
-      local yamlls_cfg = require("yaml-companion").setup {
-        -- detect k8s schemas based on file content
-        builtin_matchers = {
-          kubernetes = { enabled = true }
-        },
-
-        -- schemas available in Telescope picker
-        schemas = {
-          -- not loaded automatically, manually select with
-          -- :Telescope yaml_schema
-        },
-
-
-        lspconfig = {
-          settings = {
-            yaml = {
-              validate = true,
-              schemaStore = {
-                enable = false,
-                url = ""
-              },
-
-              -- schemas from store, matched by filename
-              -- loaded automatically
-              -- catalog: https://github.com/SchemaStore/schemastore/blob/master/src/api/json/catalog.json
-              schemas = require('schemastore').yaml.schemas {
-                select = {
-                  'Argo Workflows',
-                  'Helm Chart.yaml',
-                  'Helm Chart.lock',
-                  'helmfile',
-                  'Helm Unittest Test Suite',
-                  'docker-compose.yml',
-                  'helmfile',
-                  'kustomization.yaml',
-                },
-                -- additional schemas (not in the catalog)
-                extra = {
-                  {
-                    url = 'https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json',
-                    name = 'Argo CD Application',
-                  },
-                  {
-                    name = "ca-cert clusterissuer",
-                    uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/cert-manager.io/clusterissuer_v1.json"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
       -- Setup the language servers
 
       vim.lsp.config('pylsp', {
@@ -163,8 +107,8 @@
           },
         },
       })
-
         
+
       vim.lsp.config('rust_analyzer', {
         -- Server-specific settings. See `:help lsp-quickstart`
         on_attach = lsp_keymappings,
@@ -197,74 +141,9 @@
         on_attach = lsp_keymappings,
         filetypes = { 'yaml'},
       })
-      
-      vim.lsp.config('helm_ls', {
-        settings = {
-          ['helm-ls'] = {
-            yamlls = {
-              -- activated yamlls leads to more false errors 
-              enabled = true;
-              path = "yaml-language-server",
-            }
-          }
-        }
-      })
-
 
         
-      require("schema-companion").setup_client(
-        require("schema-companion").adapters.yamlls.setup({
-          sources = {
-            -- your sources for the language server
-            require("schema-companion").sources.matchers.kubernetes.setup({ version = "master" }),
-            require("schema-companion").sources.lsp.setup(),
-            require("schema-companion").sources.schemas.setup({
-              {
-                name = "Kubernetes master",
-                uri = "https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/master-standalone-strict/all.json",
-              },
-              {
-                name = "Argo CD Application",
-                uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/argoproj.io/application_v1alpha1.json"
-              },
-              {
-                name = "Argo Workflows",
-                uri  = "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"
-              },
-              {
-                name = "docker-compose.yml",
-                uri = "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"
-              },
-              {
-                name = "helmfile",
-                uri = "https://json.schemastore.org/helmfile.json"
-              },
-              {
-                name = "Helm Chart.yaml",
-                uri  = "https://json.schemastore.org/chart.json"
-              },
-              {
-                name = "SealedSecret",
-                uri = "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/bitnami.com/sealedsecret_v1alpha1.json"
-              },
-              -- schemas below are automatically loaded, but added
-              -- them here so that they show up in the statusline
-              {
-                name = "Kustomization",
-                uri = "https://json.schemastore.org/kustomization.json"
-              },
-              {
-                name = "GitHub Workflow",
-                uri = "https://json.schemastore.org/github-workflow.json"
-              },
-            }),
-          },
-        }),
-        {
-          vim.lsp.enable('yamlls')
-        }
-      )
-
+      require("helm-ls").setup() -- for helm-ls.nvim plugin
       require("telescope").load_extension("yaml_schema")
       
       vim.lsp.enable('bashls')
@@ -272,6 +151,7 @@
       vim.lsp.enable('nil_ls')
       vim.lsp.enable('pylsp')
       vim.lsp.enable('helm_ls')
+      vim.lsp.enable('yamlls')
       vim.lsp.enable('rust_analyzer')
       vim.lsp.enable('vimls')
 
