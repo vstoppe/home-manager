@@ -80,7 +80,6 @@
       render-markdown-nvim
       telescope-nvim
       vim-flog
-      vim-fugitive
       vim-nix
       vim-sort-motion
       vim-tmux-navigator

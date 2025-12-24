@@ -14,13 +14,6 @@
         return require('packer').startup(function(use)
           use 'wbthomason/packer.nvim' -- this is essential.
 
-
-
-        --use { 
-        --  "dapc11/telescope-yaml.nvim",
-        --  requires = { "dapc11/telescope-yaml.nvim" }
-        --}
-
         use {
           "cuducos/yaml.nvim",
           ft = { "yaml" }, -- optional
