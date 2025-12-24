@@ -144,7 +144,6 @@
 
         
       require("helm-ls").setup() -- for helm-ls.nvim plugin
-      require("telescope").load_extension("yaml_schema")
       
       vim.lsp.enable('bashls')
       vim.lsp.enable('lua_ls')
