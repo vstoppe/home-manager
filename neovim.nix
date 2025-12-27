@@ -15,6 +15,14 @@
     ./neovim/treesitter.nix
   ];
 
+  home = {
+    file = {
+      ".config/nvim/after/lsp/helm_ls.lua".source = neovim/helm_ls.lua;
+      ".config/nvim/after/lsp/yamlls".source      = neovim/yamlls.lua;
+    };
+  };
+
+
   home.packages = with pkgs; [
 
     nodejs_20  # neovim / ls dependency
