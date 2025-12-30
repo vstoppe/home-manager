@@ -22,10 +22,11 @@
     };
 
     packages = with pkgs; [
-      nodejs_20  # neovim / ls dependency
       helm-ls    # helm-language-server binary
+      nodejs_20  # neovim / ls dependency
       ripgrep    # neovim / telescope dependency
       shellcheck # neovim / lsp depencency
+      tree-sitter
       xsel       # neovim dep
       yaml-language-server
       (pkgs.python311.withPackages (ppkgs: with ppkgs; [
@@ -84,6 +85,7 @@
       plenary-nvim # a dependency for neovim-project
       render-markdown-nvim
       telescope-nvim
+      treesj # expandes single lines with multiple braces to multiline code
       vim-flog
       vim-nix
       vim-sort-motion
@@ -124,16 +126,18 @@
           -- colorscheme settings
           require("catppuccin").setup({
             transparent_background = true,
+            ingegrations = {
+              treesitter_context = true,
+            }
           })
+          vim.cmd.colorscheme "catppuccin"
+
+          require('treesj').setup()
 
     '';
 
     extraConfig = ''
-        colorscheme catppuccin-frappe
-
-        " Enable syntax highlighting
-        syntax enable
-        set nowrap
+      set nowrap
     '';
   };
 }
