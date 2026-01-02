@@ -103,6 +103,7 @@
         zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --group-directories-first $realpath'  # dir preview
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
         #zstyle ':omz:plugins:iterm2 shell-integration yes'
+        source $HOME/.nix-profile/etc/profile.d/nix.sh
       '';
 
       localVariables = {
