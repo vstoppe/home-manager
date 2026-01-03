@@ -3,7 +3,6 @@
 {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
-      SchemaStore-nvim  #  <== manage yaml schemata: https://github.com/b0o/SchemaStore.nvim/
       schema-companion-nvim # <== fork of yaml-companion
       helm-ls-nvim # <== helm ft detection, alternative to vim-helm
     ];
