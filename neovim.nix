@@ -19,6 +19,7 @@
     file = {
       ".config/nvim/after/lsp/helm_ls.lua".source = neovim/helm_ls.lua;
       ".config/nvim/after/lsp/yamlls".source      = neovim/yamlls.lua;
+      ".config/nvim/queries/yaml/injections.scm".source = neovim/queries/yaml/injections.scm;
     };
 
     packages = with pkgs; [
