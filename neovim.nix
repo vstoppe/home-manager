@@ -94,48 +94,46 @@
       vim-tmux-navigator
     ];
 
-
     extraLuaConfig = ''
-          -- require('rainbow-delimiters.setup').setup()
-          require('autoclose').setup({
-            keys = {
-              -- In Markdown autoclose the backticks is annoying for codeblocks ("```")
-              ["`"] = { close = false, disabled_filetypes = { "markdown"} },
-            },
-          })
+      -- require('rainbow-delimiters.setup').setup()
+      require('autoclose').setup({
+        keys = {
+          -- In Markdown autoclose the backticks is annoying for codeblocks ("```")
+          ["`"] = { close = false, disabled_filetypes = { "markdown"} },
+        },
+      })
 
-          -- setup indent-blankline: add lines to help identify indentions
-          require('ibl').setup()
+      -- setup indent-blankline: add lines to help identify indentions
+      require('ibl').setup()
 
-          -- helps in changeing surroundings (eg. "\', \" ")
-          require('nvim-surround').setup()
+      -- helps in changeing surroundings (eg. "\', \" ")
+      require('nvim-surround').setup()
 
-          -- helps un/commenting lines:
-          require('nvim_comment').setup()
+      -- helps un/commenting lines:
+      require('nvim_comment').setup()
 
-          require('gitsigns').setup({
-            on_attach = function(bufnr)
-              local function map(mode, lhs, rhs, opts)
-                  opts = vim.tbl_extend('force', {noremap = true, silent = true}, opts or {})
-                  vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
-              end
+      require('gitsigns').setup({
+        on_attach = function(bufnr)
+          local function map(mode, lhs, rhs, opts)
+              opts = vim.tbl_extend('force', {noremap = true, silent = true}, opts or {})
+              vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
+          end
 
-              map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>")
-              map("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>")
-            end
-          })
+          map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>")
+          map("n", "<leader>gt", ":Gitsigns toggle_current_line_blame<CR>")
+        end
+      })
 
-          -- colorscheme settings
-          require("catppuccin").setup({
-            transparent_background = true,
-            ingegrations = {
-              treesitter_context = true,
-            }
-          })
-          vim.cmd.colorscheme "catppuccin"
+      -- colorscheme settings
+      require("catppuccin").setup({
+        transparent_background = true,
+        ingegrations = {
+          treesitter_context = true,
+        }
+      })
+      vim.cmd.colorscheme "catppuccin"
 
-          require('treesj').setup()
-
+      require('treesj').setup()
     '';
 
     extraConfig = ''
