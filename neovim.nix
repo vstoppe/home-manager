@@ -69,6 +69,7 @@
 
 
     plugins = with pkgs.vimPlugins; [
+      animation-nvim # dependency for nvim-windows
       autoclose-nvim
       b64-nvim
       catppuccin-nvim # colorscheme
@@ -77,6 +78,7 @@
       gruvbox-nvim # colorscheme
       indent-blankline-nvim
       indent-tools-nvim
+      middleclass # dependency for nvim-windows
       mini-icons # support for render-markdown
       mini-nvim  # support for render-markdown
       neogit
@@ -92,6 +94,7 @@
       vim-nix
       vim-sort-motion
       vim-tmux-navigator
+      windows-nvim
     ];
 
     extraLuaConfig = ''
@@ -134,6 +137,27 @@
       vim.cmd.colorscheme "catppuccin"
 
       require('treesj').setup()
+
+      require("windows").setup({
+         autowidth = {
+            enable = true,
+            winwidth = 1.1,
+            filetype = {
+               help = 2,
+            },
+         },
+         ignore = {
+            buftype = { "quickfix" },
+            filetype = { "NvimTree", "neo-tree", "undotree", "gundo" }
+         },
+         animation = {
+            enable = true,
+            duration = 100,
+            fps = 30,
+            easing = "in_out_sine"
+         }
+      })
+
     '';
 
     extraConfig = ''

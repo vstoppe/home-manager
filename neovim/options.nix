@@ -7,6 +7,10 @@
 
         -- Set leader key to space
         vim.g.mapleader = ' '
+        
+        vim.o.winwidth = 5
+        vim.o.winminwidth = 5
+        vim.o.equalalways = true
 
         -- Hint: use `:h <option>` to figure out the meaning if needed
         vim.opt.clipboard = 'unnamedplus'   -- use system clipboard
