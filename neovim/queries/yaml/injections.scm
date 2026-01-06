@@ -5,7 +5,7 @@
     value: (block_node (block_scalar) @injection.content)
   (#any-of? @key "values" "valuesContent")
   (#offset! @injection.content 0 1 0 0)
-  (#set! injection.language "yaml"))
+  (#set! injection.language "helm"))
 
 
 (block_node
