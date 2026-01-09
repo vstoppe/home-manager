@@ -21,6 +21,7 @@
       ".config/nvim/after/lsp/yamlls".source      = neovim/yamlls.lua;
       ".config/nvim/queries/nix/injections.scm".source  = neovim/queries/nix/injections.scm;
       ".config/nvim/queries/yaml/injections.scm".source = neovim/queries/yaml/injections.scm;
+      ".config/nvim/ftplugin/helm.lua".source = neovim/ftplugin/helm.lua;
     };
 
     packages = with pkgs; [
@@ -76,6 +77,7 @@
       diffview-nvim # neogit dep for viewing diffs
       gitsigns-nvim
       gruvbox-nvim # colorscheme
+      nvim-ts-context-commentstring # get ft for nvim-comment
       indent-blankline-nvim
       indent-tools-nvim
       middleclass # dependency for nvim-windows
@@ -83,7 +85,7 @@
       mini-nvim  # support for render-markdown
       neogit
       nightfox-nvim # colorscheme
-      nvim-comment
+      nvim-comment # https://github.com/terrortylor/nvim-comment
       nvim-surround
       nvim-web-devicons # needed for lualine-nvim
       plenary-nvim # a dependency for neovim-project
@@ -113,7 +115,11 @@
       require('nvim-surround').setup()
 
       -- helps un/commenting lines:
-      require('nvim_comment').setup()
+      require('nvim_comment').setup({
+        hook = function()
+          require('ts_context_commentstring').update_commentstring()
+        end,
+      })
 
       require('gitsigns').setup({
         on_attach = function(bufnr)
@@ -137,6 +143,10 @@
       vim.cmd.colorscheme "catppuccin"
 
       require('treesj').setup()
+
+      require('ts_context_commentstring').setup({
+        enable_autocmd = false,
+      })
 
       require("windows").setup({
          autowidth = {
