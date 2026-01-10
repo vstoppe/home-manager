@@ -8,6 +8,7 @@
 
     extraLuaConfig = ''
 
+        ---- function for getting the yaml schema. does not work right now
         local function get_schema()
           local schema = require("schema-companion").get_current_schemas()
           -- print(schema)
@@ -17,6 +18,32 @@
           return schema.result[1].name
         end
 
+        --- functions for getting the yaml_path for lualine
+        local ts_utils = require("nvim-treesitter.ts_utils")
+        local function yaml_path()
+          local node = ts_utils.get_node_at_cursor()
+          local path = {}
+
+          while node do
+            if node:type() == "block_mapping_pair" then
+              local key = node:child(0)
+              if key then
+                table.insert(path, 1, vim.treesitter.get_node_text(key, 0))
+              end
+            end
+            node = node:parent()
+          end
+
+          return table.concat(path, ".")
+        end
+
+        -- simple keymapping the show the yaml_path interactively
+        vim.keymap.set("n", "<leader>yp", function()
+          print(yaml_path())
+        end, { desc = "Show YAML path" })
+
+
+        ---- setting up lualine
         require('lualine').setup {
           options = {
             icons_enabled = true,
@@ -39,7 +66,10 @@
           sections = {
             lualine_a = {'mode'},
             lualine_b = {'branch', 'diff', 'diagnostics'},
-            lualine_c = {'filename'},
+            lualine_c = {'filename', {yaml_path, 
+              cond = function() 
+                return vim.bo.filetype == "yaml" or vim.bo.filetype == "helm" 
+              end, } },
             lualine_x = {'encoding', 'fileformat', 'filetype', 'get_schema'},
             -- lualine_x = {'encoding', 'fileformat', 'filetype', get_schema},
             -- lualine_x = {'encoding', 'fileformat', 'filetype'},
@@ -49,7 +79,7 @@
           inactive_sections = {
             lualine_a = {},
             lualine_b = {},
-            lualine_c = {'filename'},
+            lualine_c = {'filename', {yaml_path}},
             -- lualine_x = {'location'},
             lualine_y = {},
             lualine_z = {}
