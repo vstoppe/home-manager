@@ -9,7 +9,11 @@
         vim.cmd("%! openssl x509 -noout -text")
       end, { range = true })
 
-
+      --  PrettyPrint JSON and Exceptions
+      vim.api.nvim_create_user_command("PrettyPrint", function()
+        vim.cmd("%! jq .")
+        vim.cmd("%s/\\n/\r/")
+      end, { range = true})
 
     '';
   };
