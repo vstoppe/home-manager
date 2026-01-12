@@ -8,6 +8,7 @@
     ./neovim/lualine.nix
     ./neovim/neogit.nix
     ./neovim/nvim-tree.nix
+    ./neovim/user-commands.nix
     ./neovim/options.nix
     ./neovim/packer.nix
     ./neovim/neoscroll.nix
@@ -167,6 +168,7 @@
             easing = "in_out_sine"
          }
       })
+
 
     '';
 
