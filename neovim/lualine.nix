@@ -77,7 +77,7 @@
             lualine_c = {
               'filename', {yaml_path, 
               cond = function() 
-                return vim.bo.filetype == "yaml" or vim.bo.filetype == "helm" 
+                return vim.bo.filetype == "yaml" or vim.bo.filetype == "helm" or vim.bo.filetype == "yaml.helm-values"
               end, } },
           },
           inactive_sections = {
