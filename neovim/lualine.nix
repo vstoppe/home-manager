@@ -66,25 +66,28 @@
           sections = {
             lualine_a = {'mode'},
             lualine_b = {'branch', 'diff', 'diagnostics'},
-            lualine_c = {'filename', {yaml_path, 
-              cond = function() 
-                return vim.bo.filetype == "yaml" or vim.bo.filetype == "helm" 
-              end, } },
+            -- lualine_c = {'lsp_status', },
             lualine_x = {'encoding', 'fileformat', 'filetype', 'get_schema'},
             -- lualine_x = {'encoding', 'fileformat', 'filetype', get_schema},
             -- lualine_x = {'encoding', 'fileformat', 'filetype'},
             lualine_y = {'progress'},
             lualine_z = {'location'}
           },
+          tabline = {
+            lualine_c = {
+              'filename', {yaml_path, 
+              cond = function() 
+                return vim.bo.filetype == "yaml" or vim.bo.filetype == "helm" 
+              end, } },
+          },
           inactive_sections = {
             lualine_a = {},
             lualine_b = {},
-            lualine_c = {'filename', {yaml_path}},
+            lualine_c = {'filename' },
             -- lualine_x = {'location'},
             lualine_y = {},
             lualine_z = {}
           },
-          tabline = {},
           winbar = {},
           inactive_winbar = {},
           extensions = {}
