@@ -20,7 +20,7 @@
         end
 
         require'nvim-treesitter.configs'.setup {
-          ensure_installed = { "bash", "dockerfile", "helm", "gotmpl", "html", "json", "json5", "lua", "nix", "markdown", "python", "query", "rust", "sql", "vim", "vimdoc", "yaml" },
+          ensure_installed = { "bash", "dockerfile", "helm", "gotmpl", "html", "json", "json5", "lua", "nix", "markdown", "pem", "python", "query", "rust", "sql", "vim", "vimdoc", "yaml" },
 
           -- Install parsers synchronously (only applied to `ensure_installed`)
           sync_install = false,
