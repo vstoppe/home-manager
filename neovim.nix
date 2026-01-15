@@ -76,9 +76,9 @@
       b64-nvim
       catppuccin-nvim # colorscheme
       diffview-nvim # neogit dep for viewing diffs
+      flash-nvim # better key navigation / jumping
       gitsigns-nvim
       gruvbox-nvim # colorscheme
-      nvim-ts-context-commentstring # get ft for nvim-comment
       indent-blankline-nvim
       indent-tools-nvim
       middleclass # dependency for nvim-windows
@@ -88,6 +88,7 @@
       nightfox-nvim # colorscheme
       nvim-comment # https://github.com/terrortylor/nvim-comment
       nvim-surround
+      nvim-ts-context-commentstring # get ft for nvim-comment
       nvim-web-devicons # needed for lualine-nvim
       plenary-nvim # a dependency for neovim-project
       render-markdown-nvim
@@ -147,6 +148,14 @@
 
       require('ts_context_commentstring').setup({
         enable_autocmd = false,
+      })
+
+      require('flash').setup({
+        modes = {
+          search = {
+            enabled = true
+          }
+        }
       })
 
       require("windows").setup({
