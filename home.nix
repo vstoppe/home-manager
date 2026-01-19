@@ -41,6 +41,7 @@
       nix-du
       nvimpager
       p7zip
+      pyenv
       toml2json
       yq
       # It is sometimes useful to fine-tune packages, for example, by applying

@@ -107,7 +107,8 @@
       '';
 
       localVariables = {
-        PATH="$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH:$HOME/workspace/homelab/automation";
+        PYENV="$HOME/.pyenv";
+        PATH="$HOME/.pyenv/bin:$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH:$HOME/workspace/homelab/automation";
         PAGER="nvimpager";
       };
 
