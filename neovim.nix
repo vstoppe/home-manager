@@ -154,9 +154,17 @@
         modes = {
           search = {
             enabled = true
+          },
+          char = {
+            jump_labels = true
           }
         }
       })
+
+      -- In command line mode toggle between normal and flash search:
+      vim.keymap.set('c', '<c-s>', function() require("flash").toggle() end)
+      -- append a flash movement after a command:
+      vim.keymap.set('o', 'r',     function() require("flash").remote() end)
 
       require("windows").setup({
          autowidth = {
