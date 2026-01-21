@@ -176,7 +176,7 @@
          },
          ignore = {
             buftype = { "quickfix" },
-            filetype = { "NvimTree", "neo-tree", "undotree", "gundo", "gitsigns-gitblame" }
+            filetype = { "NvimTree", "neo-tree", "undotree", "gundo", "gitsigns-blame" }
          },
          animation = {
             enable = true,
