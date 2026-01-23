@@ -107,6 +107,16 @@
         },
       })
         
+      -- Setup json language server
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+      vim.lsp.config('jsonls', {
+        capabilities = capabilities,
+        on_attach = lsp_keymappings,
+      })
+
 
       vim.lsp.config('rust_analyzer', {
         -- Server-specific settings. See `:help lsp-quickstart`
@@ -145,13 +155,14 @@
       require("helm-ls").setup() -- for helm-ls.nvim plugin
       
       vim.lsp.enable('bashls')
+      vim.lsp.enable('helm_ls')
+      vim.lsp.enable('jsonls')
       vim.lsp.enable('lua_ls')
       vim.lsp.enable('nil_ls')
       vim.lsp.enable('pylsp')
-      vim.lsp.enable('helm_ls')
-      vim.lsp.enable('yamlls')
       vim.lsp.enable('rust_analyzer')
       vim.lsp.enable('vimls')
+      vim.lsp.enable('yamlls')
 
     '';
   };

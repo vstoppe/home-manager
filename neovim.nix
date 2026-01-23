@@ -56,10 +56,11 @@
     vimAlias = true;
     extraPackages = with pkgs; [
       lua-language-server
-      yaml-language-server
-      vim-language-server
-      nodePackages.bash-language-server
       nil # <== language-server for nix
+      nodePackages.bash-language-server
+      vim-language-server
+      vscode-json-languageserver
+      yaml-language-server
     ];
 
     # this is a function taking a package as an argument:
