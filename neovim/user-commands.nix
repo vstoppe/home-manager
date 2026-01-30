@@ -11,9 +11,9 @@
 
       --  PrettyPrint JSON and Exceptions
       vim.api.nvim_create_user_command("PrettyPrint", function()
-        vim.cmd("%! jq .")
-        vim.cmd("%s/\\n/\r/")
-      end, { range = true})
+        vim.lsp.buf.format()
+        vim.cmd([[%s/\\n/\r/g]])
+      end, {})
 
     '';
   };
