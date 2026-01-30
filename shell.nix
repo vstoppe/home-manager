@@ -104,11 +104,12 @@
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
         #zstyle ':omz:plugins:iterm2 shell-integration yes'
         source $HOME/.nix-profile/etc/profile.d/nix.sh
+        source $HOME/.config/home-manager/scripts/set-kubeconfig.sh # script for managing kube configs in multiple files
       '';
 
       localVariables = {
         PYENV="$HOME/.pyenv";
-        PATH="$HOME/.pyenv/bin:$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH:$HOME/workspace/homelab/automation";
+        PATH="$HOME/.pyenv/bin:$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH:$HOME/workspace/homelab/automation:$HOME/.config/home-manager/scripts";
         PAGER="nvimpager";
       };
 
