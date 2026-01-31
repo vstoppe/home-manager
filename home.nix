@@ -30,6 +30,7 @@
       bat # colorful cat alternative
       cilium-cli
       dyff
+      git-worktree-switcher
       gcc # also used for neovim / lua stuff
       hubble
       jq
