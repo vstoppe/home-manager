@@ -78,6 +78,7 @@
       catppuccin-nvim # colorscheme
       diffview-nvim # neogit dep for viewing diffs
       flash-nvim # better key navigation / jumping
+      git-worktree-nvim
       gitsigns-nvim
       gruvbox-nvim # colorscheme
       indent-blankline-nvim
@@ -187,6 +188,27 @@
          }
       })
 
+      -- configure git-worktree-nvim
+      -- https://github.com/polarmutex/git-worktree.nvim/
+
+      -- This plugin does not require to call setup function, but you should setup your default hooks
+      local Hooks = require("git-worktree.hooks")
+      local config = require('git-worktree.config')
+      local update_on_switch = Hooks.builtins.update_current_buffer_on_switch
+
+      Hooks.register(Hooks.type.SWITCH, function (path, prev_path)
+        vim.notify("Moved from " .. prev_path .. " to " .. path)
+        update_on_switch(path, prev_path)
+      end)
+
+      Hooks.register(Hooks.type.DELETE, function ()
+        vim.cmd(config.update_on_change_command)
+      end)
+
+      -- require('git-worktree').setup()
+      require('telescope').load_extension('git_worktree')
+      vim.keymap.set("n", "<Leader>wt", "<CMD>lua require('telescope').extensions.git_worktree.git_worktree()<CR>", silent)
+      vim.keymap.set("n", "<Leader>wc", "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", silent)
 
     '';
 
