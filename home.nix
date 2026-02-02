@@ -34,6 +34,7 @@
       hubble
       jq
       k9s
+      kaf # kafka client
       krew
       kubeswitch
       lynx
