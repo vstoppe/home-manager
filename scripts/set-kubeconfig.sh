@@ -16,7 +16,9 @@ else
   unset KUBECONFIG
   for file in `find "${CUSTOM_CONTEXTS}" -type f -name "*.yml" -or -name "*.yaml"`
   do
-    export KUBECONFIG="$file:$KUBECONFIG"
+    export KUBECONFIG="$KUBECONFIG:$file"
   done
+    # Remove fist char (":"):
+    export KUBECONFIG=${KUBECONFIG:1}
   IFS="$OIFS"
 fi
