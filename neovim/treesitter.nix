@@ -8,18 +8,18 @@
       rainbow-delimiters-nvim
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
         local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
         vim.fn.mkdir(parser_install_dir, "p")
         vim.opt.runtimepath:append(parser_install_dir)
 
-        local status_ok, plugin = pcall(require, "nvim-treesitter.configs")
+        local status_ok, plugin = pcall(require, "nvim-treesitter")
         if not status_ok then
-          vim.notify("WARNING: nvim-treetitter.configs failed to load")
-          return
+           vim.notify("WARNING: nvim-treetitter.configs failed to load")
+         return
         end
 
-        require'nvim-treesitter.configs'.setup {
+        require'nvim-treesitter'.setup {
           ensure_installed = { "bash", "dockerfile", "helm", "gotmpl", "html", "json", "json5", "lua", "nix", "markdown", "pem", "python", "query", "rust", "sql", "vim", "vimdoc", "yaml" },
 
           -- Install parsers synchronously (only applied to `ensure_installed`)

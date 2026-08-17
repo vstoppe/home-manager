@@ -21,7 +21,7 @@
       "$HOME/bin:$HOME/.rd/bin"
     ];
 
-    stateVersion = "25.11"; # Please read the comment before changing.
+    stateVersion = "26.05"; # Please read the comment before changing.
 
     ### common packages 
     packages = with pkgs; [
@@ -45,7 +45,6 @@
       p7zip
       pyenv
       toml2json
-      vault
       yq
       # It is sometimes useful to fine-tune packages, for example, by applying
       # overrides. You can do that directly here, just don't forget the

@@ -2,7 +2,7 @@
 
 {
   programs.neovim = {
-    extraLuaConfig = ''
+    initLua = ''
         -- define common options
         local opts = {
             noremap = true,      -- non-recursive

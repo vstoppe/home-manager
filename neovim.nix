@@ -27,13 +27,13 @@
 
     packages = with pkgs; [
       helm-ls    # helm-language-server binary
-      nodejs_20  # neovim / ls dependency
+      nodejs_22  # neovim / ls dependency
       ripgrep    # neovim / telescope dependency
       shellcheck # neovim / lsp depencency
       tree-sitter
       xsel       # neovim dep
       yaml-language-server
-      (pkgs.python313.withPackages (ppkgs: with ppkgs; [
+      (pkgs.python314.withPackages (ppkgs: with ppkgs; [
         # some neovim python plugins search for dependencies here, not programs.neovim.extraPython3Packages!!!
         autopep8 # <== kick in auto-lintng with pylsp
         flake8
@@ -53,11 +53,12 @@
     defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
+    withRuby = true;
     vimAlias = true;
     extraPackages = with pkgs; [
       lua-language-server
       nil # <== language-server for nix
-      nodePackages.bash-language-server
+      bash-language-server
       vim-language-server
       vscode-json-languageserver
       yaml-language-server
@@ -79,6 +80,7 @@
       diffview-nvim # neogit dep for viewing diffs
       flash-nvim # better key navigation / jumping
       git-worktree-nvim
+      fzf-lua # dependency of possession
       gitsigns-nvim
       gruvbox-nvim # colorscheme
       indent-blankline-nvim
@@ -103,7 +105,7 @@
       windows-nvim
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
       -- require('rainbow-delimiters.setup').setup()
       require('autoclose').setup({
         keys = {

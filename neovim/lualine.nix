@@ -6,7 +6,7 @@
       lualine-nvim
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
 
         ---- function for getting the yaml schema. does not work right now
         local function get_schema()
@@ -19,23 +19,23 @@
         end
 
         --- functions for getting the yaml_path for lualine
-        local ts_utils = require("nvim-treesitter.ts_utils")
-        local function yaml_path()
-          local node = ts_utils.get_node_at_cursor()
-          local path = {}
+        -- local ts_utils = require("nvim-treesitter.ts_utils")
+        -- local function yaml_path()
+        --   local node = ts_utils.get_node_at_cursor()
+        --   local path = {}
 
-          while node do
-            if node:type() == "block_mapping_pair" then
-              local key = node:child(0)
-              if key then
-                table.insert(path, 1, vim.treesitter.get_node_text(key, 0))
-              end
-            end
-            node = node:parent()
-          end
+        --   while node do
+        --     if node:type() == "block_mapping_pair" then
+        --       local key = node:child(0)
+        --       if key then
+        --         table.insert(path, 1, vim.treesitter.get_node_text(key, 0))
+        --       end
+        --     end
+        --     node = node:parent()
+        --   end
 
-          return table.concat(path, ".")
-        end
+        --   return table.concat(path, ".")
+        -- end
 
         -- simple keymapping the show the yaml_path interactively
         vim.keymap.set("n", "<leader>yp", function()

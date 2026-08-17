@@ -6,7 +6,7 @@
       nvim-tree-lua
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
         require("nvim-tree").setup({
           sync_root_with_cwd = true, --- root needs to be synced for nvim-project
           disable_netrw = true,

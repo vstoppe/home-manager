@@ -7,7 +7,7 @@
       helm-ls-nvim # <== helm ft detection, alternative to vim-helm
     ];
 
-    extraLuaConfig = ''
+    initLua = ''
 
       -- https://github.com/cenk1cenk2/schema-companion.nvim
       require("schema-companion").setup({

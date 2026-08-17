@@ -2,7 +2,7 @@
 
 {
   programs.neovim = {
-    extraLuaConfig = ''
+    initLua = ''
 
       -- Show contents of certificate
       vim.api.nvim_create_user_command("DecodeCert", function()
