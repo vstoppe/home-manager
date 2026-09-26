@@ -20,7 +20,6 @@
         end
 
         require'nvim-treesitter'.setup {
-          ensure_installed = { "bash", "dockerfile", "helm", "gotmpl", "html", "json", "json5", "lua", "nix", "markdown", "pem", "python", "query", "rust", "sql", "vim", "vimdoc", "yaml" },
 
           -- Install parsers synchronously (only applied to `ensure_installed`)
           sync_install = false,
@@ -58,6 +57,13 @@
           },
           indent = { enable = true, disable = { "yaml" } },
         }
+
+
+        -- syntax highlighting has to be activated by file-type if it does not work
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = { 'helm', 'yaml.helm-values' },
+          callback = function() vim.treesitter.start() end,
+        })
       '';
   };
 }
