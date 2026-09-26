@@ -111,6 +111,7 @@
         PYENV="$HOME/.pyenv";
         PATH="$HOME/.pyenv/bin:$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH:$HOME/workspace/homelab/automation:$HOME/.config/home-manager/scripts";
         PAGER="nvimpager";
+        NIXPKGS_ALLOW_UNFREE=1;
       };
 
       prezto = {
