@@ -54,6 +54,8 @@
     ] ++ (if config.home.username == "vst" then 
     [
       # Packages I don't need to install in work environment.
+      # talosctl
+      aerospace
       ansible
       argocd
       cargo
@@ -75,8 +77,8 @@
       rsync
       rust-analyzer # rust-language-server
       rustc
+      sketchybar # customizable macOS status bar
       smartmontools
-      # talosctl
       unixtools.watch
       vobcopy
       wakeonlan
