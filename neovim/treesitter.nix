@@ -19,14 +19,14 @@
         require('nvim-treesitter').setup {
 
           -- Install parsers synchronously (only applied to `ensure_installed`)
-          sync_install = false,
+          -- sync_install = false,
 
           -- Automatically install missing parsers when entering buffer
           -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-          auto_install = false,
+          -- auto_install = false,
 
           highlight = {
-            enable = true,
+            -- enable = true,
             -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
             disable = function(lang, buf)
                 local max_filesize = 100 * 1024 -- 100 KB
@@ -48,7 +48,7 @@
             query = 'rainbow-parens',
             strategy = require('rainbow-delimiters').strategy['global'],
           },
-          indent = { enable = true, disable = { "yaml" } },
+          -- indent = { enable = true, disable = { "yaml" } },
         }
 
 
@@ -58,6 +58,7 @@
           callback = function() 
             local ok = pcall(vim.treesitter.start)
             if not ok then
+              vim.notify("WARNING: Something went wrong with vim.treesitter.start")
               return
             end
 
