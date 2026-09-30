@@ -9,9 +9,6 @@
     ];
 
     initLua = ''
-        local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
-        vim.fn.mkdir(parser_install_dir, "p")
-        vim.opt.runtimepath:append(parser_install_dir)
 
         local status_ok, plugin = pcall(require, "nvim-treesitter")
         if not status_ok then
@@ -19,7 +16,7 @@
          return
         end
 
-        require'nvim-treesitter'.setup {
+        require('nvim-treesitter').setup {
 
           -- Install parsers synchronously (only applied to `ensure_installed`)
           sync_install = false,
@@ -27,10 +24,6 @@
           -- Automatically install missing parsers when entering buffer
           -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
           auto_install = false,
-
-          ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-          -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-          parser_install_dir = parser_install_dir,
 
           highlight = {
             enable = true,
@@ -62,7 +55,20 @@
         -- syntax highlighting has to be activated by file-type if it does not work
         vim.api.nvim_create_autocmd('FileType', {
           pattern = { 'helm', 'yaml.helm-values' },
-          callback = function() vim.treesitter.start() end,
+          callback = function() 
+            local ok = pcall(vim.treesitter.start)
+            if not ok then
+              return
+            end
+
+            -- Treesitter folding is provided by Neovim.
+            vim.wo.foldmethod = "expr"
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+            -- Recalculate folds.
+            vim.cmd("normal! zx")
+
+          end,
         })
       '';
   };
