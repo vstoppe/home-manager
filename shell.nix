@@ -120,7 +120,6 @@
         caseSensitive = false;
       }; 
 
-      # enableAutosuggestions = true; <== outdated with 24.05
       syntaxHighlighting.enable = true;
       shellAliases = {
         cd = "z";
