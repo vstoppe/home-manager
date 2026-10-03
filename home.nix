@@ -77,7 +77,9 @@
       rsync
       rust-analyzer # rust-language-server
       rustc
-      sketchybar # customizable macOS status bar
+      sketchybar # customizable MacOS status bar
+      sketchybar-app-font
+      jankyborders # add colored boarders to MacOS windows
       smartmontools
       unixtools.watch
       vobcopy
