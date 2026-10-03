@@ -132,6 +132,7 @@
         ws3 = "cd ~/workspace/k3s";
         wsa = "cd ~/workspace/ansible";
         wsh = "cd ~/workspace/homelab";
+        fa  = "aerospace list-windows --all | fzf --bind 'enter:execute(bash -c \"aerospace focus --window-id {1}\")+abort'"; # find application
       };
 
       zplug = {
