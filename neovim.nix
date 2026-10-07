@@ -99,6 +99,7 @@
       telescope-nvim
       treesj # expandes single lines with multiple braces to multiline code
       vim-flog
+      vim-fugitive
       vim-nix
       vim-sort-motion
       vim-tmux-navigator
