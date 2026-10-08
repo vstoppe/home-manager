@@ -213,6 +213,22 @@
       vim.keymap.set("n", "<Leader>wt", "<CMD>lua require('telescope').extensions.git_worktree.git_worktree()<CR>", silent)
       vim.keymap.set("n", "<Leader>wc", "<CMD>lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>", silent)
 
+
+      -- Set clipboard to use OSC 52 integration
+      vim.opt.clipboard = "unnamedplus"
+
+      vim.g.clipboard = {
+        name = 'OSC 52',
+        copy = {
+          ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+          ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+        },
+        paste = {
+          ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+          ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+        },
+      }
+
     '';
 
     extraConfig = ''
