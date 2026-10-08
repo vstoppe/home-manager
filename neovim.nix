@@ -77,6 +77,7 @@
       autoclose-nvim
       b64-nvim
       catppuccin-nvim # colorscheme
+      dial-nvim # increment / decrement / toggle bools
       diffview-nvim # neogit dep for viewing diffs
       flash-nvim # better key navigation / jumping
       git-worktree-nvim
@@ -107,7 +108,6 @@
     ];
 
     initLua = ''
-      -- require('rainbow-delimiters.setup').setup()
       require('autoclose').setup({
         keys = {
           -- In Markdown autoclose the backticks is annoying for codeblocks ("```")
