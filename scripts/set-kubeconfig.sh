@@ -20,5 +20,6 @@ else
   done
     # Remove fist char (":"):
     export KUBECONFIG=${KUBECONFIG:1}
-  IFS="$OIFS"
 fi
+
+IFS="$OIFS"
