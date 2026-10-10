@@ -20,6 +20,8 @@
     ### The better "ls"
     eza = {
       enable = true;
+      colors = "auto";
+      enableZshIntegration = true;
       icons = "auto";
       git = true;
       extraOptions = [
