@@ -16,10 +16,26 @@
     };
 
     dircolors.enable = true;
+    
+    ### ls deluxe
+    lsd = {
+      enable = true;
+      colors = {
+        date = {
+          hour-old = "#9DBAF2";                  # Default = 40
+          day-old = "#9DBAF2";                   # Default = 42
+          older = "#9DBAF2";
+        };
+      };
+      enableZshIntegration = true;
+      settings = {
+        date = "+%Y-%m-%d %H:%M";
+      };
+    };
 
     ### The better "ls"
     eza = {
-      enable = true;
+      enable = false; # disabled due to lack of autocomplete directory
       colors = "auto";
       enableZshIntegration = true;
       icons = "auto";
@@ -99,10 +115,11 @@
       };     historySubstringSearch.enable = true;
 
       initContent = ''
-        source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+        # if fzf-tab had to be installed by hand, because nix could not compile it due to an too old glibc, take this:
+        test -f $HOME/bin/fzf-tab/fzf-tab.plugin.zsh && source $HOME/bin/fzf-tab/fzf-tab.plugin.zsh || source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
         source <(kubectl completion zsh)
         compdef kubecolor=kubectl
-        zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --group-directories-first $realpath'  # dir preview
+        zstyle ':fzf-tab:complete:z:*' fzf-preview 'ls -1 $realpath'  # dir preview
         zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
         #zstyle ':omz:plugins:iterm2 shell-integration yes'
         source $HOME/.nix-profile/etc/profile.d/nix.sh
@@ -132,6 +149,8 @@
         e = "exit";
         h3 = "helm";
         ns  = "switch ns";
+        lS = "lsd -lSr";
+        lT = "lsd -ltr";
         update = "home-manager switch";
         wp = "watch kubectl get po";
         ws  = "cd ~/workspace/";
@@ -144,7 +163,7 @@
       zplug = {
         enable = true;
         plugins = [
-          { name = "plugins/eza"; tags = [ "from:oh-my-zsh" ]; }
+          # { name = "plugins/eza"; tags = [ "from:oh-my-zsh" ]; }
           { name = "plugins/git"; tags = [ "from:oh-my-zsh" ]; }
           { name = "plugins/kubectl"; tags = [ "from:oh-my-zsh" ]; }
           { name = "plugins/iterm2"; tags = [ "from:oh-my-zsh" ]; }
