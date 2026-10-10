@@ -109,11 +109,15 @@
         source $HOME/.config/home-manager/scripts/set-kubeconfig.sh # script for managing kube configs in multiple files
       '';
 
+      sessionVariables = {
+        # These variables get exported
+        NIXPKGS_ALLOW_UNFREE=1;
+      };
+
       localVariables = {
         PYENV="$HOME/.pyenv";
         PATH="$HOME/.pyenv/bin:$HOME/.nix-profile/bin:/usr/local/bin:$HOME/.krew/bin:$PATH:$HOME/workspace/homelab/automation:$HOME/.config/home-manager/scripts";
         PAGER="nvimpager";
-        NIXPKGS_ALLOW_UNFREE=1;
       };
 
       prezto = {
