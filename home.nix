@@ -96,6 +96,7 @@
     ".config/my-posh-theme.json".source = dotfiles/my-posh-theme.json;
     ".config/posh-theme-zen.toml".source = dotfiles/posh-theme-zen.toml;
     ".config/posh-theme-zen.json".source = dotfiles/posh-theme-zen.json;
+    ".config/aerospace/aerospace.toml".source = dotfiles/aerospace.toml;
     # not usable on chroot nix
     # ".ssh/rc".source = dotfiles/ssh-rc;
 
