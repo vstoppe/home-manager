@@ -38,6 +38,9 @@
         vim.opt.ignorecase = true           -- ignore case in searches by default
         vim.opt.smartcase = true            -- but make it case sensitive if an uppercase is entered
 
+        -- folding
+        vim.opt.foldlevelstart = 99
+
         -- Telescope
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
