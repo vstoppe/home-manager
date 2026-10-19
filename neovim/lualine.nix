@@ -7,6 +7,16 @@
     ];
 
     initLua = ''
+      
+        -- yaml-nvim needs to be setup before lualine
+        -- otherwise it won't be found be found.
+ 
+        vim.pack.add({
+          "https://tangled.org/cuducos.me/yaml.nvim",
+        })
+
+        require("yaml_nvim").setup({ ft = { "yaml",  "helm" } })
+
 
         ---- function for getting the yaml schema. does not work right now
         local function get_schema()
@@ -75,10 +85,7 @@
           },
           tabline = {
             lualine_c = {
-              'filename', {yaml_path, 
-              cond = function() 
-                return vim.bo.filetype == "yaml" or vim.bo.filetype == "helm" or vim.bo.filetype == "yaml.helm-values"
-              end, } },
+              'filename', { require("yaml_nvim").get_yaml_key_and_value } },
           },
           inactive_sections = {
             lualine_a = {},

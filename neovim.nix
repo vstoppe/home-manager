@@ -97,6 +97,7 @@
       nvim-web-devicons # needed for lualine-nvim
       plenary-nvim # a dependency for neovim-project
       render-markdown-nvim
+      snacks-nvim # optional dependency for yaml-nvim
       telescope-nvim
       treesj # expandes single lines with multiple braces to multiline code
       vim-flog
