@@ -76,6 +76,7 @@
       animation-nvim # dependency for nvim-windows
       autoclose-nvim
       b64-nvim
+      boole-nvim
       catppuccin-nvim # colorscheme
       dial-nvim # increment / decrement / toggle bools
       diffview-nvim # neogit dep for viewing diffs
@@ -230,7 +231,8 @@
         },
       }
 
-      -- dial setup for toggling boolean
+      -- dial setup: toggling boolean does not git-work 
+      -- at lead works with numbers
 
       local augend = require("dial.augend")
       require("dial.config").augends:register_group{
@@ -239,15 +241,43 @@
           augend.integer.alias.decimal,   -- nonnegative decimal number (0, 1, 2, 3, ...)
           augend.integer.alias.hex,       -- nonnegative hex number  (0x01, 0x1a1f, etc.)
           augend.constant.alias.bool,    -- boolean value (true <-> false)
-          augend.constant.alias.Bool,    -- boolean value (True <-> False)
+          -- augend.constant.alias.Bool,    -- boolean value (True <-> False)
+
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.constant.new({
+            elements = { "true", "false" },
+            word = true,
+            cyclic = true,
+          }),
         },
 
         -- augends used when group with name `mygroup` is specified
         mygroup = {
           augend.integer.alias.decimal,
           augend.constant.alias.bool,    -- boolean value (true <-> false)
+          augend.constant.alias.Bool,    -- boolean value (True <-> False)
         }
       }
+
+
+      require('boole').setup({
+        mappings = {
+          increment = '<C-a>',
+          decrement = '<C-x>'
+        },
+        -- User defined loops
+        additions = {
+          {'Foo', 'Bar'},
+          {'tic', 'tac', 'toe'}
+        },
+        allow_caps_additions = {
+          {'enable', 'disable'}
+          -- enable → disable
+          -- Enable → Disable
+          -- ENABLE → DISABLE
+        }
+      })
 
     '';
 
