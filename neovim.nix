@@ -266,8 +266,8 @@
         },
         -- User defined loops
         additions = {
-          {'Foo', 'Bar'},
-          {'tic', 'tac', 'toe'}
+          {'error', 'info', 'debug', 'trace'},
+          {'ERROR', 'INFO', 'DEBUG', 'TRACE'}
         },
         allow_caps_additions = {
           {'enable', 'disable'}
