@@ -78,7 +78,6 @@
       b64-nvim
       boole-nvim
       catppuccin-nvim # colorscheme
-      dial-nvim # increment / decrement / toggle bools
       diffview-nvim # neogit dep for viewing diffs
       flash-nvim # better key navigation / jumping
       git-worktree-nvim
@@ -228,36 +227,6 @@
           ['*'] = function() return vim.split(vim.fn.getreg('"'), '\n') end,
         },
       }
-
-      -- dial setup: toggling boolean does not git-work 
-      -- at lead works with numbers
-
-      local augend = require("dial.augend")
-      require("dial.config").augends:register_group{
-        -- default augends used when no group name is specified
-        default = {
-          augend.integer.alias.decimal,   -- nonnegative decimal number (0, 1, 2, 3, ...)
-          augend.integer.alias.hex,       -- nonnegative hex number  (0x01, 0x1a1f, etc.)
-          augend.constant.alias.bool,    -- boolean value (true <-> false)
-          -- augend.constant.alias.Bool,    -- boolean value (True <-> False)
-
-          augend.integer.alias.decimal,
-          augend.integer.alias.hex,
-          augend.constant.new({
-            elements = { "true", "false" },
-            word = true,
-            cyclic = true,
-          }),
-        },
-
-        -- augends used when group with name `mygroup` is specified
-        mygroup = {
-          augend.integer.alias.decimal,
-          augend.constant.alias.bool,    -- boolean value (true <-> false)
-          augend.constant.alias.Bool,    -- boolean value (True <-> False)
-        }
-      }
-
 
      require('boole').setup({
         mappings = {
